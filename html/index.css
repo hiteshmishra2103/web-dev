@@ -1,0 +1,40 @@
+body{
+    background-color: bisque;
+    text-align: center;
+}
+img{
+    width: 200px;
+    height: 150px;
+    border-radius: 50%;
+    /* border radius is used to round the border*/
+    
+}
+h1 {
+  text-align: center;
+  font-family: "hubbali", arial; /*Imported online fonts are
+  written in between the single quotes as 
+  here Hubbali is taken from googlefont website 
+  it is written inside single quotes*/
+
+   
+  font-style: italic;
+  color: aqua;
+}
+a {
+  background-color: rgb(255, 255, 255);
+  color:rgb(255, 16, 16);
+  text-decoration: none;
+  padding: 10px;
+  cursor: pointer; /* Cursor attribute is used for the 
+  cursor appearence when it will hover over the link
+  It has many attributes like pointer, progress, zoom-in, 
+  zoom-out and more you will find on the internet*/
+}
+a:hover {
+  color: rgb(88, 10, 177);
+  background-color: white;
+}
+li{
+    list-style-type: none;
+    
+}

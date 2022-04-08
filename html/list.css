@@ -1,0 +1,39 @@
+body{
+    margin: 20px;
+}
+ol{
+    list-style-type: none;
+    width: 700px;
+    font-size: 20px;
+    margin: 10px auto;
+    /*We used list style type to remove any
+    bullets or the number before the list items*/
+    font-size: 20px;
+    font-family: Georgia;
+    padding: 0px;
+    /* See here not all the font family will be applied to the HTML document
+    Here Courier New font will be applied if it is available,
+    then the browser will apply next font if it is available and still if 
+    previous font is not available then it will apply next font to it.*/
+}
+h1{
+    text-align: center;
+    margin: 25px;
+    font-size: 40px;
+    padding: 10px;
+    font-family: Georgia;
+    background-color: aqua;
+    
+}
+li{
+    padding: 20px;
+    background-color: rgb(235, 28, 173);
+    border-radius: 50px;
+    margin: 10px;
+    text-align: center;
+    color: white;
+    box-shadow: 5px 5px 5px saddlebrown;
+}
+p{
+    text-align: center;
+}
