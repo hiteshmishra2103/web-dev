@@ -1,0 +1,36 @@
+#flexcontainer{
+    margin: 20px;
+}
+#bigcontainer1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#item1, #item2, #item3{
+ width: 430px;
+ height: 150px;
+}
+#bigcontainer2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#item4, #item5, #item6, #item7{
+    width: 300px;
+}
+#bigcontainer3{
+    display: flex;
+    flex-direction: row;
+
+}
+#item8, #item9, #item10, #item11, #item12{
+        width: 210px;
+}
+.flexitem{
+    padding: 10px 50px 50px 10px;
+    margin: 2px;
+    font-size: 30px;   
+    color: white;
+    background-color: chocolate;
+    border-radius: 5px;
+}

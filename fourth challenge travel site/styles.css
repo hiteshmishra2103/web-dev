@@ -1,0 +1,9 @@
+nav{
+    display: inline;
+    margin-left:600px;
+    font-size: 35px;
+
+}
+nav a{
+    margin-right: 20px;
+}

@@ -1,0 +1,46 @@
+#flexcontainer{
+    text-align: center;
+    display: flex;
+    width: 100%;
+    height:600px;
+    font-size: 40px;
+    padding: 10px; 
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    border: 2px solid blueviolet;
+    /* align-content:space-between ;     */
+    }
+    .flex-items{
+        width: 150px;
+        /* height: 50px; */
+    }
+    
+div div{
+    padding: 100px;
+    border: 2px solid blue;
+    margin: 2px;
+    color: blue;
+}
+#dabba1{
+    align-self: center;
+    background: yellow;
+    /* order: 5; */
+    /* flex-grow: 3; */
+}
+#dabba2{
+    background: yellow;
+    /* flex-grow: 2; */
+    height: 50px;
+}
+#dabba3{
+    align-self: center;
+    background: yellow;
+    /* order: 11; */
+    /* flex-shrink: 2; */
+}
+#dabba4{
+    align-self: stretch;
+    /* flex-shrink: 3;    */
+    background: green;
+    color: rgb(255, 13, 54);
+}
