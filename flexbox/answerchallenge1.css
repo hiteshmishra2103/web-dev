@@ -1,0 +1,27 @@
+/* first of all changing each div of class named "one" display from default to flex */
+.one{
+    display: flex;
+    }
+    /* styling boxes of each row */
+    .one div{
+        padding: 10px;
+        /* using flex-grow:1 function, boxes in each row are growing relatively to each other */
+        flex-grow: 1;
+        font-size: larger;
+        margin: 3px;
+        border-radius: 5px;
+        color: blanchedalmond;
+        background-color: red;
+    }
+    /* Changing each div of nested class named "li" display from default to flex by the way it is inside div "one' first row-> first box*/
+    div.l1{
+        display:flex;
+        padding: 0px;
+    }
+    /* styling boxes of nested class named "l1" */
+    .l1 div{
+        /* using flex-grow:1 function, boxs of nested class named "l1" are growing relatively to each other */
+        flex-grow: 1;
+        background-color: black;
+    }
+    /* CSS of Challenge #5 Completed. */

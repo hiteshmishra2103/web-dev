@@ -1,17 +1,27 @@
+/* *{
+    box-sizing: border-box;
+} */
 #logo{
+    color: rgb(255, 208, 0);
     font-size: 50px;
-    margin-left: 10px;
+    margin-left: 15px;
     font-family: "Oleo Script", sans-serif;
     text-transform: uppercase;
     text-shadow: 2px 2px 2px;
-   
+    font-weight: lighter;
 }
-header{
-    margin-top: 20px;
+strong{
+    color:rgb(0, 160, 116);
+}
+li{
+    font-family:Georgia, 'Times New Roman', Times, serif;}
+header li a{
+    text-decoration: none;
 }
 a{
     text-decoration: none;
 }
+
 a:hover{
     color: orange;
 }
