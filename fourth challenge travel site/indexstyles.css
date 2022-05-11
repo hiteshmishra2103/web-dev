@@ -27,6 +27,7 @@ li{
     align-items: center;
 
 }
+
 #pagelinks{
     display: flex;
     flex-direction: row;

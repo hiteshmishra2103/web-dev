@@ -1,0 +1,61 @@
+header{
+    position: static;
+}
+body{
+    background: linear-gradient(30deg, rgb(77,77,77), rgb(58,58,58));
+    font-size: 16px;
+    color: rgb(68,68,68);
+}
+
+main{
+    padding: 130px;
+    
+}
+main img{
+    width: 250px;
+    height: 200px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+#first{
+    display: flex;
+    flex-direction: row;
+}
+.textbox h2{
+   text-align: left;
+}
+.content{
+    
+    margin: 10px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+}
+#third{
+        display: flex;
+        flex-direction: row;  
+    }
+#third img,#first img{
+    height: inherit;
+}/* The images in container of id #third inherited the height
+of the parent element which is here the container with id #third
+now the images will fit the container while adjusting the height
+according to the parent element's height*/ 
+.textbox{
+    padding:8px 14px 14px 14px;
+}
+.explore a{
+    width: 30px;
+    color: rgb(22,211,228);
+    font-weight: bold;
+}
+.explore{
+    text-align: right;
+}
+.explore a:hover{
+    padding: 4px;
+    background-color:rgb(235,253,255);
+    font-weight: bold;
+    border-radius: 5px;
+}
