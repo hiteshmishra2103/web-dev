@@ -66,7 +66,11 @@ header a{
 @media(max-width:48rem){
    .menubtn{
         display: flex;
-        width: 3rem;
+        width:3rem;
+        /* if you do not assign width to menubtn then it will be 
+        clickable on the width upto width of viewport
+        to properly understand it remove the width and then
+        hover over the menu button.*/
     }
     .nav{
         display: none;
