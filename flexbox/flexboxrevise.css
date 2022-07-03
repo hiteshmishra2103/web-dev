@@ -1,0 +1,19 @@
+.flexbox{
+    display: flex;
+    flex-direction: row;
+    background-color:gold;
+    flex-wrap: wrap ;
+
+}
+.flexbox div{
+
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 4px solid rgb(237, 16, 16);
+    padding:5px;
+    margin: 5px;
+    color: aquamarine;
+    background: black;
+}

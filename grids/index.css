@@ -1,0 +1,37 @@
+.container div{
+    height: 50px;
+}
+.container{
+    display: grid;
+    /* grid-template-columns: 200px 100px; */
+    /* grid-template-columns: 2fr 1fr; */
+    grid-template-columns: repeat(2, 500px);
+    padding: 10px;
+    margin:10px;
+    justify-content: center;
+    gap:20px 20px;
+    border:40px double black;
+    /* grid-template-rows: 150px 150px; */
+    /*grid-auto-rows: 140px;*//*grid-auto-rows is used when you
+    don't know the exact number of rows*/
+}
+div:first-of-type{
+    grid-column: 1/3;
+}
+div:nth-of-type(3){
+    
+}
+div:nth-of-type(6){
+    grid-column: 1/3;
+
+}
+
+.container div{
+box-sizing: border-box;
+padding: 50px;
+border: 4px solid red;
+color:aqua;
+background: black;
+margin:5px;
+text-align:center;
+}
