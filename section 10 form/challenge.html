@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+    <link rel="stylesheet" href="challenge.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Krub&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Contact Us</h1>
+    <form action="" method="get">
+        <h2>How can we help you?</h2>
+        <li>
+            <label for="username">Your name</label>
+            <input type="text" name="Username" required id="username">
+        </li>
+        <li>
+            <label for="E-mail">E-mail</label>
+            <input type="email" name="E-mail" id="E-mail" required>
+        </li>
+        <li>
+            <label for="Phonenumber">Phone number</label>
+            <input type="number" name="Phonenumber" id="Phonenumber" min="10" max="13">
+        </li>
+        <li>
+            <label for="Message">Your message</label>
+            <textarea name="Message" id="Message" cols="30" rows="5"></textarea>
+        </li>
+        <li>
+            <label for="howtheyfoundus">How did you find us?</label>
+            <select name="How they found us" id="howthefoundus">
+                <option value="websearch">Websearch</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+            </select>
+        </li>
+        <li>
+            <h2>How should we reply?</h2>
+            <div class="reply">
+                <input type="radio" id="callme" value="callme" name="Reply via">
+                <label for="callme">Call me</label>
+            </div>
+            <div class="reply">
+                <input type="radio" id="email" value="email" name="Reply via">
+                <label for="email">Send me an email</label>
+            </div>
+            <div class="reply">
+                    <input type="radio" id="dontreply" value="dontreply" name="Reply via">
+                    <label for="dontreply">Don't Reply</label>
+            </div>
+        </li>
+        <li>
+            <div>
+            <input type="checkbox" id="Accept" required>
+            <label for="Accept">Accept Terms and Conditions</label>
+
+        </div>
+        </li>
+        <li class="button"><button type="reset">Clear</button>
+        <button>Submit</button>
+        </li>
+        </form>
+</body>
+
+</html>

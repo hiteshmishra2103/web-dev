@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms in html</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="" method="get">
+        <label for="user-name">Your Name</label>
+        <input type="text" name="user-name" id="user-name" required>
+        <label for="age">Your age</label>
+        <input type="number" min="18" step="1" name="User age" id="age">
+        <label for="user-email">E-mail</label>
+        <input type="email" id="user-email" name="user-email">
+        <label for="pass">Enter your password</label>
+        <input type="password">
+        <!-- <label for="aadhar">Upload your aadhar</label>
+        <input type="file" name="aadhar" id="aadhar"> -->
+        <label for="filterbyprice">Filter by Price</label>
+        <input type="range" id="filterbyprice">
+        <Label for="dob">Date Of Birth</Label>
+        <input type="date" min="2004-08-11" id="dob">
+        <H2>Your Gender</H2>
+        <div class="gender">
+            <input type="radio" name="Gender" value="Male" id="Male">
+            <label for="Male">Male</label>
+        </div>
+        <div class="gender">
+            <input type="radio" name="Gender" value="Female" required id="Female">
+            <label for="Female">Female</label>
+        </div>
+        <div class="gender">
+            <input type="radio" name="Gender" value="Other" id="Other">
+            <label for="Other">Other</label>
+        </div>
+    
+  <H2>Terms and conditions</H2>
+  <div class="terms">
+  <input type="checkbox" name="Terms" value="Agreed to terms" id="agree">
+  <label for="agree">I Agree to terms</label>
+  </div>
+  <div class="terms">
+  <input type="checkbox" value="User not agreed to share info" name="Terms" id="notagreed">
+  <label for="notagreed">I Agree to share my data</label>
+  </div>
+  <label for="message">Your message</label>
+  <textarea name="User message" id="message" cols="30" rows="10"></textarea>
+  <label for="favouritecolor">Select your favourite color: </label>
+  <select name="favouritecolor" id="favouritecolor">
+    <option value="Blue">Blue</option>
+    <option value="Red">Red</option>
+    <option value="Green">Green</option>
+  </select>
+  <button type="reset">Clear</button>
+  <button type="submit">Submit</button>
+
+</form>
+
+</body>
+
+</html>

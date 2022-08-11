@@ -1,0 +1,90 @@
+:root{
+    background-color: pink;
+    font-family: 'Roboto', sans-serif;
+
+}
+input{
+    cursor: pointer;
+}
+form{
+    font-family: 'Roboto', sans-serif;
+    margin: auto;
+    width: 30rem;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: white;
+}
+
+    
+input:focus, textarea:focus{
+    background-color: aquamarine;
+}
+input, textarea, select{
+    transition: background-color 1s ease-out;
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+label{
+    display: block;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-family: inherit;
+}
+button{
+    
+    color:rgb(255, 255, 255);
+    display: block;
+    background-color: black; 
+    margin: auto;
+    margin-top: 2rem;
+    border: 0px;
+    font: inherit;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.25rem;  
+    cursor: pointer; 
+    transition:background-color 0.5s ease-out;
+    
+}
+button:hover{
+    background-color: rgb(129, 10, 247);
+    
+}
+button[type="reset"]{
+    background-color: white;
+    border: 0.1rem solid  rgb(129, 10, 247);;
+    color:  rgb(129, 10, 247);
+}
+button[type="reset"]:hover{
+    background-color: aliceblue;
+}
+input[type="radio"]{
+    display: inline;
+    cursor: pointer;
+}
+.gender{
+    display: flex;
+}
+.gender label{
+    cursor: pointer;
+}
+.gender input{
+    width: auto;
+    margin-right: 0.4rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.terms{
+    display: flex;
+}
+.terms input{
+    width: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+}
+.terms label{
+    cursor: pointer;
+}

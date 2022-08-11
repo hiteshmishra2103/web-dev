@@ -1,0 +1,78 @@
+body{
+    background-color: aquamarine;
+    font-family: 'Roboto' sans-serif;
+}
+h1{
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: aquamarine;
+}
+
+label{
+    display: block;
+    margin-top:0.4rem;
+    font-family: inherit;
+}
+li{
+    list-style-type: none;
+}
+input, textarea,select{
+    display: block;
+    margin-top:0.4rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'roboto' sans-serif;
+}
+form{
+    margin: auto;
+    width:25rem;
+    padding:1rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    font-family: 'Roboto' sans-serif;
+}
+li div{
+    display: flex;
+
+}
+li div label{
+    cursor: pointer;
+}
+li div input{
+    width: fit-content;
+    cursor: pointer;
+}
+button{
+    padding:0.3rem 1rem;
+    /* margin-right: 0.5rem; */
+    cursor: pointer;
+    width: fit-content;
+    color: white;
+    border: 0.1rem solid  rgb(129, 10, 247);
+    border-radius: 0.25rem;
+    background-color: rgb(129, 10, 247);
+    transition: background-color 0.7s ease-out;
+    font: inherit;
+}
+button:hover{
+  color:rgb(129, 10, 247);
+  background-color: white;
+  border: 0.1rem solid  rgb(129, 10, 247);
+}
+button[type="reset"]{
+    color:  rgb(129, 10, 247);
+    background-color: white;
+    border: 0.1rem solid rgb(129, 10, 247);
+    border-radius: 0.25rem;
+    transition: background-color 0.7s ease-out;
+}
+button[type="reset"]:hover{
+    background-color: rgb(227, 241, 252);
+}
+
+/*Aligning the submit and clear buttons to right*/
+.button{
+    text-align: end;
+    box-sizing: border-box;
+}

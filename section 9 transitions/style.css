@@ -1,0 +1,39 @@
+p{
+    transition: transform 0.5s ease-out 0.2s;
+    --primary-color:black;/*Css variables are declared here, 
+    variables are used to make the css easy to use and deploy, variable
+    are declared using syntax:- ""--variablename""*/
+    --fontcolor:white;
+    background-color: var(--primary-color);
+    width: fit-content;
+    color: var(--fontcolor);
+    margin: auto;
+    padding: 0.30rem;
+    border-radius: 0.25rem;
+}
+
+p:hover{
+    transform: translate(-300px) rotate(180deg);/*you can also 
+    use many properties of transform at the same time*/
+    /* transform: rotate(90deg); */
+    /* transform: scale(1.10);/*transform has other properties than scale
+    you can see on internet for other properties. For ex:- rotate()*/
+    cursor: pointer;
+}
+#box{
+    width:fit-content;
+    padding:3rem;
+    font-size: 1.5rem;
+    color: white;
+    background-color: red;
+    position: relative;
+}
+#box2{
+    background-color: blue;
+    padding:2rem;
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    left: 50%;   
+    transform: translate(-50%);
+}
