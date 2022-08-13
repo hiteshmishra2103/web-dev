@@ -1,0 +1,23 @@
+Points to note:-
+-----Always use let while declaring variables 
+-----Don't use var unless you are working on old javascript code.
+
+1) var is globally scoped while let and const are locally
+scoped
+2) var can be updated and re-declared within its scope.
+3) let can be updated but not be redeclared.
+4) cons can neither be updated nor redeclared.
+For ex:-
+const b=10;
+/*
+value of a constant variable cannot be
+changed after it is declared
+*/ 
+5) const must be initialised during declaration unlike
+let and var.
+For ex:-
+const a;//it will show error 
+You have to initialise it while declaring.
+For ex:- const a=10; //This is correct
+6) var variables are initialised with undefined whereas
+let and const variables are not initialised. 
