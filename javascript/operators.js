@@ -29,7 +29,7 @@ console.log("a-=b" + (a -= b));
 console.log("a*=b: " + (a *= b));
 console.log("a/=b: " + (a /= b));
 console.log("a%=b: " + (a %= b));
-a=100;
+a = 100;
 console.log("a==b: " + (a == "100"));
 //-------What is the difference between == and === operators?-------//
 
@@ -39,7 +39,7 @@ is that the == operator does the type conversion of the operands
 before comparison, whereas the === operator compares the values as well as the data types of
 the operands
 */
-console.log("a===b(strict equality operator): " +(a==="100"));
+console.log("a===b(strict equality operator): " + (a === "100"));
 //------------Inequality and strict inequality operator-------------//
 /*
 The inequality operator ( != ) checks whether its two operands are not 
@@ -47,9 +47,9 @@ equal, returning a Boolean result. Unlike the strict inequality
 operator, it attempts to convert and compare operands that are 
 of different types
 */
-b="100"
+b = "100"
 console.log("a!=b(inequality operator): " + (a != b));
-console.log("a!==b(strict inequality operator): " +(a!==b));
+console.log("a!==b(strict inequality operator): " + (a !== b));
 console.log("a<b: " + (a < b));
 console.log("a<=b: " + (a <= b));
 console.log("a>b: " + (a > b));
@@ -63,11 +63,11 @@ console.log("Biggest among two numbers is: " + c);
    2) Or Operator(||)
    3) Not Operator(!) 
 */
-var a=10;
-var b=11;
-console.log("(a>9)&&(b<12): " +((a>9)&&(b<12)));
-console.log("(a>9)||(b<2): " +((a>9)||(b<2)));
-console.log("!(a>9)): " +(!(a>9)));
+var a = 10;
+var b = 11;
+console.log("(a>9)&&(b<12): " + ((a > 9) && (b < 12)));
+console.log("(a>9)||(b<2): " + ((a > 9) || (b < 2)));
+console.log("!(a>9)): " + (!(a > 9)));
 //------------BITWISE OPERATORS---------------//
 /*Bit operators work on 32 bits numbers. Any numeric operand in the operation is converted into a 32 bit number.
 The result is converted back to a JavaScript number.*/
@@ -80,16 +80,26 @@ The result is converted back to a JavaScript number.*/
     <<	      Left shift	x = 5 << 1	0101 << 1	1010	 10
     >>	      Right shift   x = 5 >> 1	0101 >> 1	0010	  2
 */
-console.log("5&1: "+(5&1));
-console.log("5|1: "+(5|1));
-console.log("~5: "+(~5));
-console.log("5^1: "+(5^1));
-console.log("5<<1: " +(5<<1));
-console.log("5>>1: " +(5>>1));
+console.log("5&1: " + (5 & 1));
+console.log("5|1: " + (5 | 1));
+console.log("~5: " + (~5));
+console.log("5^1: " + (5 ^ 1));
+console.log("5<<1: " + (5 << 1));
+console.log("5>>1: " + (5 >> 1));
 //---------------------in operator---------------------
 /*The in operator returns true if the specified property is 
 in the specified object, otherwise false:*/
-var k=["car","lambo","BMW"];
+var k = ["car", "lambo", "BMW"];
 console.log("car" in k);
 
+/////////////// Completed important operators in///////////////////
+///////////////////////////javascript//////////////////////////////
 
+///More operators///
+
+//signed right shift(>>)
+console.log("Signed right shift(5>>2): "+(-9>>2));
+//Unsigned right shift (>>>)
+console.log("Unsigned right shift(5>>>2): "+(-9>>>2));
+//signed left shift(<<)
+console.log("Signed left shift(5<<2): " +(-9<<2));
