@@ -10,7 +10,7 @@ b.href="https://india.com";
 //Accessing <h1> element by "drilling into DOM" and
 // save it in a variable with a name of your choice.
 let a=document.body.children[0];
-a.textContent="This is India!";
+a.textContent="This is changed by Javascript!";
 //select the "a" element with query selector
 let c=document.querySelector("a");
 c.href="https://tata.com";

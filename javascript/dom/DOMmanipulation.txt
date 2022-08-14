@@ -1,0 +1,6 @@
+/*
+Three important kind of DOM manipulation
+Adding a new element 
+Deleting a existing element
+Moving a existing element to a new place
+*/
