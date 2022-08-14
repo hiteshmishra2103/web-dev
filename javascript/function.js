@@ -2,7 +2,7 @@
 let a=parseInt(prompt("Enter your age: "));
 function adultYears(age){
 /*
-Functions in javascript are declared by keyword function
+Functionx in javascript are declared by keyword function
 */
     return age-18;
 }

@@ -1,0 +1,41 @@
+//-------------Selecting dom elements------------
+
+1): You can select elements by drilling into elements
+
+You have to know the DOM structure and if it changes, your 
+code needs to change as well.
+It is a hard and clumsier way to accessing the elements.
+
+2)Query elements
+You can select elements without learning the exact
+DOM strucuture and hence no exact DOM structure knowledge
+is required
+
+
+DOM not only stores the html elements but also
+stores the content inside the html tags, and that
+content is called childnodes and it can also be accessed
+using childnodes
+
+--------Most commonly used built-in methods for 
+--------selecting/querying HTML elements via javascript--
+1) document.getElementById("id");
+-->It selects a HTML element by  its ID(selects only one
+element, since IDs should be unique)
+
+2) document.querySelector("some-css selector");
+
+-->Selects the first matching(!) HTML element 
+that is met/selected by the provided CSS selector;
+
+-->The CSS selector can basically be any kind of valid CSS selector
+(e.g. ID selector  tag type selector, class selector,
+class selector, combined selectors etc.)
+
+3) document.querySelectorAll("some css selector");
+
+--> Selects ALL matching HTML elements that are met/
+selected by the provided css selector.
+
+4) document.getElementByClassName("some class");
+5)document.getElementByTagName("some tag");
