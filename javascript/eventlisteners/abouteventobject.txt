@@ -1,0 +1,3 @@
+When dealing with events then the browser automatically
+passes a certain parameter to the function you tell the browser
+when that event occurs.
