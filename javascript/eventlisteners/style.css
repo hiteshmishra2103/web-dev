@@ -1,0 +1,50 @@
+ body{
+    background-color: blanchedalmond;
+ }
+section{    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    background-color: rgb(127, 195, 254);
+    padding: 2rem;
+    border-radius: 2rem;
+    margin:auto;
+    /* vertical-align: middle; */
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 25em;
+    gap: 1rem;
+   
+}
+
+input{
+    width: 85%;
+    height: 1.5rem;
+    border-radius: 2rem;
+    border: 0px transparent;
+}
+/* input:focus{
+    
+} */
+button{
+
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+    width: 5rem;
+    padding:0.5rem 1rem ;
+    border: 0rem transparent;
+    border-radius: 0.8rem;
+    transition: background-color 1s ease-in-out;
+}
+button:hover{
+    background-color: rgb(255, 128, 219);
+    color: rgb(29, 28, 28);
+
+}
