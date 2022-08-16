@@ -7,8 +7,9 @@ function inputCount(event){
     update.innerText=60-inputLength;
     if(inputLength>=0 && inputLength<=50){
      update.style.color="rgb(26,108,26)";
+     inputElement.style.backgroundColor="white";
     }
-    else {
+    else if((60-inputLength)<=10) {
         update.style.color="red";
         inputElement.style.backgroundColor="red";
     }
