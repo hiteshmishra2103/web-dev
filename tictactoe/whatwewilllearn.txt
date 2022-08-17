@@ -1,0 +1,7 @@
+In this section we will learn new things like:
+
+1)  Handling form submission with Javascript and
+    creating objects with the "new" keyword.
+
+2)  Managing data with Javascript, HTML, and the "data"
+attribues.
