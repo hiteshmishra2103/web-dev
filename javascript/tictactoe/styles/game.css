@@ -1,0 +1,12 @@
+#game-over{
+    text-align: center;
+    width:40rem;
+    background-color: rgb(50, 5, 87);
+    color: white;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    margin: auto;
+}
+#active-game{
+    text-align: center;
+}

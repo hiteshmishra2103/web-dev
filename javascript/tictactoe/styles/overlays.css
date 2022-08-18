@@ -1,0 +1,88 @@
+/*This file includes the styles related to overlays*/
+.modal{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    /* box-sizing: border-box; */
+    padding: 2rem;
+    position:fixed;
+    width: 40rem;
+    border-radius: 1rem;
+    top:35%;
+    left:50%;
+    transform: translate(-50%);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0,0.4 );
+}
+
+@media(max-width:48rem){
+/* styling for modal overlay for devices with less than 48rem widht*/
+  .modal{
+    width:50%;
+  }
+}
+#backdrop{
+    position:fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    display: none;/*It will be displayed when user will
+click to edit his/her name*/
+
+}
+.modal h2{
+    margin:0rem 0rem 1rem 0rem;
+}
+#overlaybutton1{
+    margin-top: 1rem;
+}
+#editnameinput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#Playername{
+    margin-top: 1rem;
+    width:14rem;
+    box-sizing: border-box;
+}
+#game-configuration{
+    text-align: center;
+    margin: 3rem 0;
+}
+#game-configuration ol{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4rem;
+}
+
+#game-configuration ol li{
+    background-color: rgb(243,227, 255);
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+    height: 10rem;
+    width: 8rem;
+    list-style-type: none;
+    padding: 1rem 5rem 2rem 5rem;
+}
+#game-configuration ol li h2{
+    margin-top: 0rem;
+    margin-bottom:1rem;
+    font-size: 1rem;
+}
+#game-configuration ol li h3{
+    margin-top:1rem;
+    margin-bottom: 0rem;
+    font-size: 1.5rem;
+    color: rgb(94, 4, 168);
+}
+.player-symbol{
+    font-size: 2rem;
+    margin:1rem 0rem;
+    font-weight: bold;
+    color: rgb(47, 4, 82);
+}

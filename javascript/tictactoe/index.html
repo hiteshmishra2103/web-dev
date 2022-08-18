@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic tac toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/overlays.css">
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+    <div id="backdrop"></div>
+    <header id="main-header">
+        <h1>
+            Play Tic, Tac, Toe
+        </h1>
+        <p>
+            Built with HTML, CSS, JavaScript and -of course -lots of love!
+        </p>
+    </header>
+    <aside class="modal">
+        <h2>Enter your Name</h2>
+        <div><form action="" method="post" id="editnameinput">
+            <label for="Playername">Player Name</label>
+            <input type="text" id="Playername" name="Player-Name">
+        </form>
+        </div>
+        <div id="overlaybutton1">
+            <button type="button" class="btn btn-alt">Cancel</button>
+            <!-- When you set button type to button then it acts as a cancel button -->
+            <button type="submit" class="btn">Confirm</button>
+        </div>
+    </aside>
+    <main>
+        <section id="game-configuration">
+            <ol>
+                <li >
+                  <article>
+                    <h2>Player 1</h2>
+                    <h3>Ronaldo</h3>
+                    <p class="player-symbol">X</p>
+                    <button class="btn btn-alt" >Edit name</button>
+                </article>
+            </li>
+            <li>
+                <article>
+                    <h2>Player 2</h2>
+                    <h3>Messi</h3>
+                    <p class="player-symbol">O</p>
+                    <button class="btn btn-alt">Edit name</button>
+                    </article>
+                </li>
+            </ol>
+            <button class="btn">Start New Game</button>
+        </section>
+        <section id="active-game">
+            <article id="game-over">
+                <h3>You won,<span id="winner-name"> Messi</span>!</h3>
+                <p>Click "Start New Game" above, to start a new game!</p>
+            </article>
+            <p>It's your turn<span id="active-player">Player name</span>!</p>
+<ol>
+    <li></li>
+    <li></li>
+    <li></li>
+
+    <li></li>
+    <li></li>
+    <li></li>
+    
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+        </section>
+    </main>
+    <section></section>
+</body>
+</html>
