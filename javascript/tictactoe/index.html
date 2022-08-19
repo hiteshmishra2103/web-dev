@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/overlays.css">
     <link rel="stylesheet" href="styles/game.css">
+    <script src="scripts/config.js" defer></script>
+    <script src="scripts/game.js" defer></script>
+    <script src="scripts/app.js" defer></script>
 </head>
 <body>
     <div id="backdrop"></div>
@@ -22,36 +25,38 @@
             Built with HTML, CSS, JavaScript and -of course -lots of love!
         </p>
     </header>
-    <aside class="modal">
+    <aside class="modal" id="config-overlay">
         <h2>Enter your Name</h2>
-        <div><form action="" method="post" id="editnameinput">
+        <div>
+            <form action="" method="post" id="editnameinput">
             <label for="Playername">Player Name</label>
-            <input type="text" id="Playername" name="Player-Name">
-        </form>
+            <input type="text" id="Playername" name="Playername" class="inputerror" equired>
         </div>
+        <p id="config-errors"></p>
         <div id="overlaybutton1">
-            <button type="button" class="btn btn-alt">Cancel</button>
+            <button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
             <!-- When you set button type to button then it acts as a cancel button -->
-            <button type="submit" class="btn">Confirm</button>
+            <button type="submit" class="btn confirm">Confirm</button>
         </div>
+    </form>
     </aside>
     <main>
         <section id="game-configuration">
             <ol>
                 <li >
-                  <article>
+                  <article id="player-1-data">
                     <h2>Player 1</h2>
                     <h3>Ronaldo</h3>
                     <p class="player-symbol">X</p>
-                    <button class="btn btn-alt" id="edit-player-1-btn">Edit name</button>
+                    <button class="btn btn-alt" id="edit-player-1-btn" data-playerid="1">Edit name</button>
                 </article>
             </li>
             <li>
-                <article>
+                <article id="player-2-data">
                     <h2>Player 2</h2>
                     <h3>Messi</h3>
                     <p class="player-symbol">O</p>
-                    <button class="btn btn-alt" id="edit-player-2-btn">Edit name</button>
+                    <button class="btn btn-alt" id="edit-player-2-btn" data-playerid="2">Edit name</button>
                     </article>
                 </li>
             </ol>

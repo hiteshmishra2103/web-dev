@@ -86,3 +86,13 @@ click to edit his/her name*/
     font-weight: bold;
     color: rgb(47, 4, 82);
 }
+
+/*
+style to form input element when inappropriate form 
+input is submitted, for ex: whitespace input from user
+*/
+.inputerror{
+    border-color: rgb(136, 2, 2);
+    background-color: rgb(253, 219,219);
+}
+
