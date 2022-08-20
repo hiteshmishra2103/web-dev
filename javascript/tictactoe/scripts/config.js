@@ -3,18 +3,19 @@
 function OpenPlayerConfig(event){
     playerConfigOverlayElement.style.display="flex";
     backdropElement.style.display="block";
-
     inputFormElement.classList.remove("inputerror");
-    
+    errorOutputElement.textContent="";
+    inputFormElement.value="";
     const selectedPlayerId=+event.target.dataset.playerid;//adding "+" in front of a value will convert it into a number, as here string will be converted to number. 
     editedPlayer=selectedPlayerId;
+    
 }
 
 function closePlayerConfig(event){
     playerConfigOverlayElement.style.display="none";
     backdropElement.style.display="none";
     inputFormElement.classList.remove("inputerror");
-    errorOutputElement.textContent="";
+    formElement.firstElementChild.lastElementChild.value="";
 }
 
 /* Player data handling from form submissions */
@@ -40,13 +41,24 @@ else{//for closing the overlay element when the form is submitted
     playerConfigOverlayElement.style.display="none";
     backdropElement.style.display="none";
     inputFormElement.classList.remove("inputerror");
-    errorOutputElement.textContent="";
+    
 }
 
-//selecting the editedPlayer data
+//selecting the editedPlayer data and changing the player name.
     
 const updatedPlayerDataElement=document.getElementById("player-" +editedPlayer+"-data");
 updatedPlayerDataElement.children[1].textContent=enteredPlayerName;
+
+players[editedPlayer-1].name=enteredPlayerName;
+
+//Or you can also use the more concise logic below
+
+// if(editedPlayer===1){
+//     players[0].name=enteredPlayerName;
+// }
+// else{
+//     players[1].name=enteredPlayerName;
+// }
 
 }
 
@@ -56,3 +68,4 @@ which is to send a HTTP request to the server and it will
 reload after the event submit happens*/
 
 // console.log(event)
+

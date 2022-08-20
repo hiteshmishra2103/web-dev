@@ -1,15 +1,46 @@
 /* This file is responsible for the game logic */
 
+function resetGame(){
+    activePlayer=0;//setting active player to 0(first player)
+    currentRound=1;//setting current round to first round of game
+    
+    //setting the game over box to default state and display none
+    gameOverElement.firstElementChild.innerHTML='You won,<span id="winner-name"> Messi</span>!';
+    gameOverElement.style.display="none";
+
+    //resetting the gameData array to all elements with value 0
+    
+    for(let i=0; i<3; i++){
+        for(let j=0; j<3; j++){
+            gameData[i][j]=0;
+        }
+    }
+
+    //initialising the li items to empty, so that new entries 
+//could be done
+    for(let i of gameFieldElements){
+        i.textContent="";
+
+        // removing all the disabled class from all the li items so that
+//user could interact with them
+        i.classList.remove("disabled");
+    }
+
+}
+
+
 function startNewGame(event) {
     //to check whether user has entered custom names
     if (players[0].name === "" && players[1].name === "") {
         alert("Enter custom user name by clicking on Edit name option.");
         return;
     }
+    resetGame()
     gameAreaElement.style.display = "block";
     //this statement will only execute when user will enter custom username
     activePlayerNameElement.textContent = players[activePlayer].name;
 }
+
 
 //Adding function to switch the player turns
 
@@ -58,9 +89,17 @@ function selectGameField(event) {
 
     gameData[selectedRow][selectedColumn] = activePlayer + 1;
     const winnerId=checkForGameOver()
-    console.log(winnerId);
+   
+    
+//currentRound++ is added before switchplayer() and after checkForGameOver()
+//to keep record of every iteration of checkForGameOver(). You
 
-    switchPlayer();//For changing turns of players
+if(winnerId!==0){
+    endGame(winnerId);
+}
+
+   currentRound++;
+   switchPlayer();//For changing turns of players
 }
 
 //function to check the game result
@@ -108,8 +147,9 @@ else if(gameData[0][2]>0
         return gameData[0][2];
 }
 
-//logic for checking whether the game has been completed
-//or not, I have used 9 because there are
+// Logic for checking whether the game has been completed and 
+// the game result is draw or not, I have used 9 because
+// there are 9 boxes for playing
 
 else if(currentRound===9){
     return -1;
@@ -118,5 +158,19 @@ else{
     return 0;
 }
 
+}
 
+function endGame(winnerId){
+    gameOverElement.style.display="block";
+    if(winnerId>0){
+    const winnerName=players[winnerId-1].name;
+    //to display the winner name if the game is not draw
+    gameOverElement.firstElementChild.firstElementChild.textContent=winnerName;
+    //to display the game-over window when the game is finished
+    
+}
+
+    else{
+        gameOverElement.firstElementChild.textContent="It\'s a draw!";
+    }
 }
