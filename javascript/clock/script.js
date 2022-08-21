@@ -1,4 +1,5 @@
 setInterval(setClock, 1000);
+//It will invoke setClock function every 1s
 
 const hourHand=document.querySelector("[data-hour-hand]");
 const minuteHand=document.querySelector("[data-minute-hand]");
