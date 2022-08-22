@@ -23,7 +23,7 @@ function closePlayerConfig(event){
 function savePlayerConfig(event){
 event.preventDefault();
 const formData=new FormData(event.target);
-const enteredPlayerName=formData.get("Playername").trim();     
+const enteredPlayerName=formData.get("Playername").trim();//Playername is the name of input field     
 //trim(): it trims extra whitespaces:"   max schwarz  " --> "max schwarz"
 
 //Adding extra validation to form elements in javascript
