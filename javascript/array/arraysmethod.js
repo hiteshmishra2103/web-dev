@@ -97,7 +97,11 @@ let bn=[12,2,5,4,2,1];
 let rev=bn.reverse();
 console.log(bn, rev);
 
-//for each loop is used for traversing arrays
+//forEach loop is used for traversing arrays
+//syntax: a.forEach((value,index,array)=>{
+// return value*value;
+//})
+//Note: forEach loop takes three parameters=> value, index, arrays
 bn.forEach((element)=>{
   console.log(element*element);
 }

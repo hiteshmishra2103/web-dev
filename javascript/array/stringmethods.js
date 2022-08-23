@@ -54,7 +54,7 @@ console.log(str1.startsWith('Sat', 3));
 
 //endsWith():
 
-const str1 = 'Cats are the best!';
+str1 = 'Cats are the best!';
 
 console.log(str1.endsWith('best!'));
 // expected output: true
