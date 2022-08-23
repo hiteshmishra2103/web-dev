@@ -96,3 +96,26 @@ console.log(arrb);
 let bn=[12,2,5,4,2,1];
 let rev=bn.reverse();
 console.log(bn, rev);
+
+//for each loop is used for traversing arrays
+bn.forEach((element)=>{
+  console.log(element*element);
+}
+)
+let result=0;
+bn.forEach((element)=>{
+  result=result+element;
+  console.log(result);
+})
+
+//for in loop: It gives the index of an array or returns the key from an array
+// Key are the index in arrays
+
+//arrray.from() method: It is used to convert a string, html collection or other to arrays
+//for ex:
+let abc="singhisking";
+let arr1=Array.from(abc);
+arr1.forEach((i)=>{
+  console.log(i);
+}
+)
