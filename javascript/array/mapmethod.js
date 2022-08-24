@@ -14,10 +14,10 @@ a.forEach((element)=>{
 
 const b=[1,2,3,4,5,6,6];
 let maparr=b.map((value, index, array)=>{//map() method return an array 
-    console.log(value);
+    console.log(value,index, array);
     return index
 }
 )
-console.log(maparr)
-
+console.log(maparr)//it will print the array returned my map()
+//Note: Map(), Filter() do not change the original array
 
