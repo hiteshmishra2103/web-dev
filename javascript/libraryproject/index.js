@@ -1,3 +1,4 @@
+let libraryForm = document.getElementById("libraryform");
 //Constructors
 function Book(name, author, type) {
   this.name = name;
@@ -5,12 +6,18 @@ function Book(name, author, type) {
   this.author=author;
 }
 //display constructor
-function display() {}
+function Display() {
+
+}
 
 //Add methods to display prototype
+Display.prototype.add=function(book){
 
+}
+Display.prototype.clear=function(){
+libraryForm.reset();
+}
 //Add event listener to form
-let libraryForm = document.getElementById("libraryform");
 libraryForm.addEventListener("submit", libraryFormSubmit);
 const bookName = document.getElementById("bookName");
 const authorName = document.getElementById("author");
@@ -34,4 +41,7 @@ function libraryFormSubmit(event) {
     type=selfHelp.value;
   }
   let book = new Book(name,author, type);
+  let display=new Display();
+  display.add(book);
+  display.clear();
 }
