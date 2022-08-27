@@ -23,6 +23,9 @@
       <div class="container my-3">
         <h1>Crunch Library</h1>
         <hr>
+        <div id="message">
+           
+        </div>
         <form id="libraryform">
             <div class="row mb-3">
               <label for="bookName" class="col-sm-2 col-form-label">Name</label>
@@ -63,22 +66,18 @@
             <button type="submit" class="btn btn-primary">Add Book</button>
           </form>
       <div id="table"><table class="table table-striped">
+        <hr>
         <h1>Your Books</h1>
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">S.NO.</th>
                 <th scope="col">Name</th>
                 <th scope="col">Author</th>
                 <th scope="col">Type</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
+            <tbody id="tablebody">
+             
             </tbody>
           </table>
       </div>
