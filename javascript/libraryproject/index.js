@@ -1,3 +1,4 @@
+
 let count=0;
 let libraryForm = document.getElementById("libraryform");
 //Constructors
@@ -80,3 +81,4 @@ function libraryFormSubmit(event) {
         display.show('danger');
     }
 }
+

@@ -1,3 +1,4 @@
+
 let headingElement=document.querySelector("h1");
 let message="This is singh";
 headingElement.innerText=message;
