@@ -1,5 +1,13 @@
 let divElement=document.createElement("div");
-let text=document.createTextNode("You can edit this text by clicking on it!") 
+
+let val=localStorage.getItem("text");
+let text;
+if(val==null){
+    text=document.createTextNode("You can edit this text by clicking on it!") 
+}
+else{
+    text=document.createTextNode(val);
+}
 divElement.appendChild(text)
 let containerDiv=document.getElementsByClassName("container");
 divElement.setAttribute("id", "div");
@@ -13,4 +21,10 @@ divElement.addEventListener("click", function(){
     let html=divElement.innerText;
     divElement.innerHTML=` <textarea name="" id="textarea" cols="15" rows="4">${divElement.innerText}</textarea>`;
 }
+
+let textArea=document.getElementById("textarea");
+textArea.addEventListener("blur", function(){
+    divElement.innerText=textArea.value;
+    localStorage.setItem("text", textArea.value);
+})
 })
