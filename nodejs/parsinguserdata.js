@@ -1,6 +1,8 @@
-const { urlencoded } = require('express');
-const express=require('express');
-const app=express();
+
+const express=require('express');//require("express") will return a function and
+//it will be stored in express hence we can execute it as express() in next line
+//so "express()" will return an object which we will then store in constant"app"
+const app=express();//
 app.use(express.urlencoded({extended:false}));
 app.listen(3000);
 app.get("/currenttime",function(request,response){
