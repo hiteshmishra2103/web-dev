@@ -1,0 +1,22 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Learning Nodejs",
+  "main": "nodejs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiteshmishra2103/web-dev.git"
+  },
+  "author": "Hitesh mishra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiteshmishra2103/web-dev/issues"
+  },
+  "homepage": "https://github.com/hiteshmishra2103/web-dev#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
