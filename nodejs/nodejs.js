@@ -11,19 +11,19 @@ app.get("/currenttime",function(request,response){
 //address bar
 app.get("/",function(request,response){
     response.send(`<h1>Hello World</h1>`);
-
+//We have not assigned a statuscode, but express will set it to
+//default i.e 200(success)
 })
-
-const express=require("express");
-function handleRequest(request, response) {
-  if (request.url === "/") {
-    response.statusCode = 200;
-    response.end("<h1>Hello World!</h1>");
-  }
-  else if(request.url==='/timestamp'){
-    response.end(`<h1>`+new Date().toISOString()+`</h1>`);
-  }
-}
+// const http=require("http");
+// function handleRequest(request, response) {
+//   if (request.url === "/") {
+//     response.statusCode = 200;
+//     response.end("<h1>Hello World!</h1>");
+//   }
+//   else if(request.url==='/timestamp'){
+//     response.end(`<h1>`+new Date().toISOString()+`</h1>`);
+//   }
+// }
 // const server = http.createServer(handleRequest);
 // //Whenever a request is reaching to NodeJs server, NodeJs will execute the function (here
 // //that function is handleRequest) for us and it will pass in an object(request) with more data
