@@ -1,0 +1,26 @@
+[
+  {
+    "id": "r1",
+    "name": "Singh ka dhaba",
+    "address": "near chandni chowk",
+    "cuisine": "punjabi",
+    "website": "https://udemy.com",
+    "description": "It is very amazing"
+  },
+  {
+    "id": "r2",
+    "name": "Kundan's Restaurant",
+    "address": "Nagpur",
+    "cuisine": "Indian",
+    "website": "https://udemy.com",
+    "description": "It is so amazing!"
+  },
+  {
+    "name": "asdf",
+    "address": "htisf",
+    "cuisine": "mexican",
+    "website": "https://udemy.com",
+    "description": "this is amzing",
+    "id": "800a70cb-9864-4ffa-8970-5c88697322fe"
+  }
+]
