@@ -1,0 +1,337 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  outline: none;
+  border: none;
+ 
+  /* outline: solid 1px red; */
+
+}
+header{
+    background: radial-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url(./images/banner1.jpg);
+    background-size:cover;
+    width: 100%;
+    height: 100vh;
+}
+
+/* -----------------------Styling navbar------------------------------------ */
+
+#logohighlight{
+    color: rgb(248, 32, 32);
+}
+.navbar{
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: white;
+    font-size: 16px;
+    height: 80px;
+    padding:10px 0;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    transition: 0.5s ease;
+}
+
+.navitems{
+    display: inline-block;  
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
+.logo{
+    font-size: 2.5rem;
+    margin-left: 40px;
+}
+
+#loginbtn{
+    display: inline-block;
+    color: white;
+    background-color: #e74c3c;
+    padding:10px 20px;
+    border-radius: 4px;
+    margin-right: 40px;    
+    margin-left: 30px;  
+    position: relative;  
+    z-index: 1;
+    transition: all 0.3s;
+}
+
+#loginbtn:hover{
+    color: #3e3c3c;
+
+}
+
+#loginbtn::before{
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+border-radius: inherit;
+width: 0%;
+z-index: -1;
+background-color: rgb(255, 127, 127);
+transition: width 0.5s;
+}
+#loginbtn:hover::before{
+    width: 100%;
+    color: #e74c3c;
+}
+
+
+.searchicon{
+    background:none;
+    border: none;
+}
+#headersection{
+    color: white;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.camera{
+    margin-top: 100px;
+}
+.inputfield{
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#headersection h1{
+    font-size: 40px;
+}
+#headersection input{
+    width: 60%;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+    margin-top: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.searchicon{
+    background-color: #e74c3c;
+    padding-top: 6px;
+    padding-bottom: 2px;
+    border-radius:8px;
+    width: 20%;
+    background-color: #e74c3c;
+    position: absolute;
+    top: 50%;    
+    left: 50%;
+    transform: translate(160px, -16%);
+}
+
+/* -------------------------- Styling the filter gallery ------------------------ */
+
+.filter-gallery{
+    padding: 100px;
+}
+.portfolio-menu{
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+.portfolio-menu ul li{
+    display: inline-block;
+    font-size:20px;
+    margin: 20px 0; 
+    cursor: pointer;
+    padding: 0px 20px;
+    transition:0.5s ease;
+}
+
+.portfolio-menu ul li:hover{
+    color: white;
+    background: #e74c3c;
+    border-radius: 8px;
+}
+li.active{
+    color: white;
+    background: #e74c3c;
+    border-radius: 8px;
+}
+.portfolio-item{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.item{
+    text-align: center;
+    flex-basis: 30%;
+    min-width: 150px;
+    min-height: 150px;
+    margin: 10px 10px;
+
+}
+.item img{
+    width: 100%;
+    height: 100%;
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 8px;
+}
+/* ----------------------------------Styling member section---------------- */
+.member{
+width: 100%;
+padding: 20px 100px;
+transition: 0.5s ease;
+}
+.member-info{
+    text-align: center;
+    margin: 30px 0;
+}
+.member-info h1{
+    font-size: 2em;
+}
+.member-info h1 span{
+    color: #e74c3c;
+}
+
+.member-card {
+    text-align: center;
+}
+.member-card p{
+    line-height: 2em;
+    font-size: 14px;
+}
+.member-card h2{
+    margin: 15px 0px 10px 0px;
+}
+/* ----------------------------Styling images section---------------------------- */
+
+.member-images{
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+.member-images img{
+    width: 15%;
+    min-width: 150px;
+    transition: all 0.5s ease;
+}
+.member-images img:hover{
+    transform: scale(1.5);
+    mask-image: 10;
+}
+
+/* ------------------------------Styling footer section------------------------- */
+
+footer{
+    width: 100%;
+    height:100vh;
+    background-color: #262626;
+    margin-top: auto;
+    margin-bottom: auto;
+   padding: 150px 100px;
+   color: white;
+}
+.newsletter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+}
+.newsletter>div{
+    flex-basis: 50%;
+}
+.user-email-div{
+    text-align:right;
+    position: relative;
+}
+.newsletter input{
+    left: 0px;
+    top:50%;
+    transform: translateY(-50%);
+    position: absolute;
+    border-radius: 8px 0px 0px 8px;
+    padding: 10px 10px;
+    width: 70%;
+    margin-left: 0;
+    margin-right: 0;
+    border: none;
+}
+.newsletter button{
+    top:50%;
+    transform: translateY(-50%);
+    position:absolute;
+    right: 0;
+    width: 30%;
+    border-radius: 0px 8px 8px 0px;
+    padding: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #e74c3c;
+    color: white;
+}
+.newsletter p{
+    margin-top: 8px;
+    font-size: 14px;
+    font-family: serif;
+}
+
+.social p{
+    font-size: 14px;
+    font-family: serif;
+}
+
+.social img{
+    margin:20px 0;
+    padding: 4px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    transition: all 0.3s ease;
+}
+.social img:hover{
+    transform: scale(1.1);
+}
+.footer-contact{
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 3.5em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.footer-contact h1{
+    font-size: 16px;
+}
+.footer-contact>div{
+    flex-basis: 25%;
+   
+}
+.footer-contact p{
+    width: fit-content;
+    font-size: 12px;
+    color:grey;
+    cursor: pointer;
+}
+.footer-contact p:hover{
+    color: white;
+}
