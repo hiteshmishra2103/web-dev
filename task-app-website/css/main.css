@@ -1,0 +1,262 @@
+:root {
+  --primar-color: #007af3;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #444444;
+}
+
+body {
+  background: #f2f2f2;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  padding: 1em;
+  background-color: white;
+}
+.navbar .logo {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 1.2em;
+}
+.navbar span {
+  color: var(--primar-color);
+}
+.navbar .container {
+  display: flex;
+  place-content: space-between;
+}
+.navbar .mobile-menu {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+section {
+  padding: 5em;
+}
+
+.hero {
+  text-align: center;
+}
+
+.left-col .subhead {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: grey;
+  letter-spacing: 0.3em;
+}
+.left-col h1 {
+  font-size: 2.5em;
+  line-height: 1.3em;
+  margin-top: 0.2em;
+}
+.left-col .primary-cta {
+  background-color: var(--primar-color);
+  color: white;
+  padding: 0.6em 1.3em;
+  font-size: 1.4em;
+  border-radius: 5em;
+  font-weight: bold;
+  display: inline-block;
+}
+.left-col .watch-video-cta {
+  display: block;
+  margin-top: 1em;
+}
+.left-col .watch-video-cta img {
+  margin-right: 0.5em;
+  vertical-align: sub;
+}
+
+.hero-img {
+  max-width: 100%;
+  margin-top: 3em;
+}
+
+.features-section {
+  background: #20272e;
+  color: white;
+}
+
+.ul-features-list {
+  margin: 0;
+  padding-left: 0.1em;
+}
+.ul-features-list li {
+  position: relative;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+}
+.ul-features-list li:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: url(../images/bullet.svg);
+  background-size: cover;
+  left: -2em;
+}
+
+.features-section img {
+  display: none;
+}
+
+.testimonial-section {
+  background: var(--primar-color);
+}
+.testimonial-section li {
+  background: #006bd6;
+  text-align: center;
+  padding: 1em 2em;
+  width: 80%;
+  margin: 0 auto 5em auto;
+  border-radius: 1em;
+  color: white;
+}
+
+.testimonial-item {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  border: 5px solid #006bd6;
+  transform: translateY(-70%);
+}
+
+h2 {
+  font-size: 2em;
+}
+
+label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+input,
+textarea {
+  padding: 0.8em;
+  width: 100%;
+  margin-bottom: 1em;
+  border-radius: 0.3em;
+}
+
+input[type=submit] {
+  background-color: var(--primar-color);
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 5em;
+  border-radius: 5em;
+  transition: 0.3s ease;
+}
+
+input[type=submit]:hover {
+  color: antiquewhite;
+  background-color: #47a3ff;
+}
+
+iframe {
+  max-width: 100%;
+  min-height: 250px;
+}
+
+nav {
+  display: none;
+}
+
+nav {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  width: 66%;
+  right: 0%;
+  top: 0;
+  background-color: #20272e;
+  height: 100vh;
+  padding: 1em;
+  color: rgb(255, 255, 255);
+  transform-origin: right;
+  transition: 0.25s ease-in-out;
+}
+nav ul.primary-nav {
+  margin-top: 5em;
+}
+nav a {
+  display: block;
+  color: rgb(255, 255, 255);
+  padding: 0.5em;
+  font-size: 1.3em;
+}
+nav a:hover {
+  font-weight: bold;
+}
+nav .mobile-menu-exit {
+  float: right;
+  cursor: pointer;
+  margin: 0.5em;
+}
+
+nav.active {
+  display: block;
+}
+
+@media (min-width: 400px) {
+  .mobile-menu,
+.mobile-menu-exit {
+    display: none;
+  }
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  nav {
+    background-color: white;
+    position: relative;
+    display: block;
+    padding: 0;
+    flex: 1;
+    margin: 0;
+    margin-left: 10px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav a {
+    color: black;
+  }
+  nav .primary-nav {
+    display: flex;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  nav .secondary-nav {
+    display: flex;
+    margin: 0;
+    position: absolute;
+  }
+}/*# sourceMappingURL=main.css.map */
