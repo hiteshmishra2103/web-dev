@@ -6,5 +6,4 @@ const pool=mysql.createPool({
     user:"root",
     password:"amaenikoertiga2103A@"
 });
-
 module.exports=pool;
