@@ -49,8 +49,14 @@ router.get("/new-post", async function (req, res) {
   res.render("create-post", { authors: authors });
 });
 
-router.get("/posts/:id", async function (request, response) {
-  const postId = request.params.id;
+router.get("/posts/:id", async function (request, response, next) {
+  let postId = request.params.id;
+  try {
+    postId = new ObjectId(postId);
+  } catch (error) {
+    return response.status(404).render("404");
+    // return next(error);
+  }
   const post = await db
     .getDb()
     .collection("posts")
@@ -82,7 +88,7 @@ router.get("/posts/:id/edit", async function (request, response) {
 
 router.post("/posts/:id/edit", async function (request, response) {
   const postId = new ObjectId(request.params.id);
-  const result=await db
+  const result = await db
     .getDb()
     .collection("posts")
     .updateOne(
@@ -95,15 +101,18 @@ router.post("/posts/:id/edit", async function (request, response) {
         },
       }
     );
-    response.redirect("/posts");
+  response.redirect("/posts");
 });
 
-router.post("/posts/:id/delete",async function(request,response){
-const postId=new ObjectId(request.params.id);
+router.post("/posts/:id/delete", async function (request, response) {
+  const postId = new ObjectId(request.params.id);
 
-const result=await db.getDb().collection("posts").deleteOne({_id:postId});
+  const result = await db
+    .getDb()
+    .collection("posts")
+    .deleteOne({ _id: postId });
 
-response.redirect("/posts");
-})
+  response.redirect("/posts");
+});
 
 module.exports = router;
