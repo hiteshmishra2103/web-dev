@@ -81,4 +81,4 @@ async function saveComment(event) {
 }
 
 loadCommentsBtnElement.addEventListener("click", fetchCommentsForPost);
-commentsFormElement.addEventListener("submi
+commentsFormElement.addEventListener("submit", saveComment);
