@@ -1,4 +1,4 @@
-use "strict"
+"use strict"
 const { response } = require("express");
 const { post, use } = require("../../routes/blog");
 
