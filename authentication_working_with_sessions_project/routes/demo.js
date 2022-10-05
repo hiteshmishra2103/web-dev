@@ -29,7 +29,14 @@ router.get("/signup", function (req, res) {
 });
 
 router.get("/login", function (req, res) {
-  res.render("login");
+  if (!sessionInputData) {
+    sessionInputData = {
+      hasError: false,
+      email: "",
+      password: "",
+    };
+  }
+  res.render("login", {inputData:sessionInputData});
 });
 
 router.post("/signup", async function (req, res) {
@@ -73,7 +80,10 @@ router.post("/signup", async function (req, res) {
       confirmEmail:enteredConfirmEmail,
       password:enteredPassword
     }
-    return res.redirect("/signup");
+    req.session.save(function(){
+      res.redirect("/signup")
+    });
+    return
   }
 
   const hashedPassword = await bcrypt.hash(enteredPassword, 12);
@@ -98,7 +108,12 @@ router.post("/login", async function (req, res) {
     .findOne({ email: enteredEmail });
 
   if (!existingUser) {
-    console.log("Could not login!");
+    req.session.inputData={
+      hasError:true,
+      message:"Could not log you in - Please check you credentials",
+      email:enteredEmail,
+      password:enteredPassword
+    }  
     return res.redirect("/login");
   }
 
@@ -108,8 +123,16 @@ router.post("/login", async function (req, res) {
   );
 
   if (!passwordsAreEqual) {
-    console.log("Could not login - passwords are not equal!");
-    return res.redirect("/login");
+    req.session.inputData={
+      hasError:true,
+      message:"Could not log you in - Please check your credentials!",
+      email:enteredEmail,
+      password:enteredPassword
+    }
+    req.session.save(function(){
+      res.redirect("/login");
+    })
+    return;
   }
 
   req.session.user = { id: existingUser._id, email: existingUser.email , isAdmin: existingUser.isAdmin};
