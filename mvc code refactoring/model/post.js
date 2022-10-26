@@ -5,7 +5,7 @@ const ObjectId = mongodb.ObjectId;
 
 class Post {
   constructor(title, content, id) {
-    (this.title = title), (this.content = content), (thid.id = id); //id may be undefined
+    (this.title = title), (this.content = content), (this.id = id); //id may be undefined
   }
 
   if(id) {

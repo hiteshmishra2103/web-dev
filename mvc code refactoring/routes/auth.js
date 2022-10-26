@@ -23,7 +23,6 @@ router.get('/signup', function (req, res) {
 
   res.render('signup', {
     inputData: sessionInputData,
-    csrfToken: req.csrfToken(),
   });
 });
 
@@ -40,8 +39,7 @@ router.get('/login', function (req, res) {
 
   req.session.inputData = null;
   res.render('login', {
-    inputData: sessionInputData,
-    csrfToken: req.csrfToken(),
+    inputData: sessionInputData
   });
 });
 
@@ -157,5 +155,7 @@ router.post('/logout', function (req, res) {
   req.session.isAuthenticated = false;
   res.redirect('/');
 });
+
+router.get("/401", )
 
 module.exports = router;
