@@ -2,8 +2,7 @@ const session = require("express-session");
 
 function getSessionData(req){
 const sessionData=req.session.flashedData;
-req.session.flashData=null;
-
+req.session.flashedData=null;
 return sessionData;
 }
 

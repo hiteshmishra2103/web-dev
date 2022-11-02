@@ -7,6 +7,7 @@ const uid = req.session.uid;
 
   res.locals.uid=uid;
   res.locals.isAuth=true;
+  res.locals.isAdmin=req.session.isAdmin;
   next();
 }
 

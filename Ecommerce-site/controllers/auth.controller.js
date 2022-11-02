@@ -7,12 +7,28 @@ const validation = require("../util/validation");
 const sessionFlash = require("../util/session-flash");
 
 function getSignup(req, res, next) {
-  res.render("customer/auth/signup");
+  let sessionData=sessionFlash.getSessionData(req);
+
+  if(!sessionData){//if user visits the signup page for first time then the sessionData will be empty
+    //if sessionData is empty, then we will set sessionData to a default value.
+    sessionData={
+      email:"",
+      confirmEmail:"",
+      password:"", 
+      fullname:"",
+      street:"",
+      postal:"",
+      city:""
+    }
+  }
+
+  res.render("customer/auth/signup", {inputData: sessionData});
 }
 
 async function signup(req, res, next) {
   const enteredData = {
     email: req.body.email,
+    confirmEmail:req.body["confirm-email"],
     password: req.body.password,
     fullname: req.body.fullname,
     street: req.body.street,
@@ -35,8 +51,8 @@ async function signup(req, res, next) {
       req,
       {
         errorMessage:
-          "Please check you input. Password must be atleast 6 characters long. Postal Code must be 5 characters long.",
-        ...enteredData,
+          "Please check your input. Password must be atleast 6 characters long. Postal Code must be 5 characters long.",
+        ...enteredData
       },
       function () {
         res.redirect("/signup");
@@ -82,7 +98,15 @@ async function signup(req, res, next) {
 }
 
 function getLogin(req, res) {
-  res.render("customer/auth/login");
+  let sessionData=sessionFlash.getSessionData(req);
+  
+  if(!sessionData){
+    sessionData={
+      email:"",
+      password:""
+    };
+  }
+  res.render("customer/auth/login", {inputData:sessionData});
 }
 
 async function login(req, res, next) {
@@ -115,7 +139,7 @@ async function login(req, res, next) {
   if (!passwordIsCorrect) {
     res.redirect("/login");
     return;
-  }
+  }s
 
   authUtil.createUserSession(req, existingUser, function () {
     res.redirect("/");

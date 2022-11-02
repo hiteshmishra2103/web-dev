@@ -81,3 +81,25 @@ a {
     color: var(--color-black);
     border-color: var(--color-primary-700);
 }
+
+/* Styling for error messages */
+/* You will find an error section inside signup and login ejs file */
+
+.alert{
+  border-radius: var(--border-radius-small);
+  background-color: var(--color-error-100);
+  color: var(--color-error-500);
+  padding: var(--space-4);
+}
+
+/* Styling the heading of error */
+
+.alert h2{
+font-size: 1rem;
+margin: var(--space-2) 0;
+text-transform: uppercase;
+}
+
+.alert p{
+  margin: var(--space-2) 0;
+}
