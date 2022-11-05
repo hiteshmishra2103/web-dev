@@ -2,12 +2,18 @@ const path = require("path");
 
 const express = require("express");
 
+//importing the csurf package for adding the csrf protection to the site
 const csrf = require("csurf");
+
+
 const expressSession=require("express-session");
 
 const createSessionConfig=require("./config/session");
 
+//importing the database.js file.There is the code for connecting to the database
+// and checking if that database is connected.👇
 const db = require("./data/database");
+
 
 const addCSRFTokenMiddleware = require("./middlewares/csrf-token");
 
@@ -18,15 +24,25 @@ const checkAuthStatusMiddleware=require("./middlewares/check-auth");
 const authRoutes = require("./routes/auth.routes"); //importing custom authRoutes package
 const productsRoutes=require("./routes/products.routes");
 const baseRoutes=require("./routes/base.routes");
+const adminRoutes=require("./routes/admin.routes");
 
 const app = express();
 
+//Code for setting ejs template engine
+
 app.set("view engine", "ejs");
 
+//telling the express the path of ejs files, in this case files are under views folder👇
 app.set("views", path.join(__dirname, "views"));
 
+//code for serving static files(static files are javascript and css files which should be accessible whenever client requests them)
+// for ex:- when we will serve html file, then that html file will also require some js and css files which can't be provided by get or post request
+//then they will be provided by this code.👇
 app.use(express.static("public"));
 
+//express.urlencoded() is a middleware function that will look at all the incoming requests and will look
+//for form data and if it founds form data, it will parse the form data and convert it into javascript object
+//so that it can be used in our code.⭐
 app.use(express.urlencoded({ extended: false }));
 
 const sessionConfig=createSessionConfig();
@@ -40,12 +56,16 @@ app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
+app.use("/admin",adminRoutes);//adding "/admin" means that this route will only
+//become accessible if request starts from "/admin"
 
 app.use(authRoutes);
 
 app.use(errorHandlerMiddleware);
 
 
+// code for connecting to the database and checking if the database is connected then 
+// listen to the port no. 3000 otherwise throw an error.
 db.connectToDatabase()
   .then(function () {
     app.listen(3000);

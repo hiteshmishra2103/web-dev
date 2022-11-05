@@ -139,7 +139,7 @@ async function login(req, res, next) {
   if (!passwordIsCorrect) {
     res.redirect("/login");
     return;
-  }s
+  }
 
   authUtil.createUserSession(req, existingUser, function () {
     res.redirect("/");

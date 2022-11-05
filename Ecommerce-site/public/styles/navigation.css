@@ -1,4 +1,11 @@
+main{
+    margin-top: 6rem;
+}
+
 #main-header{
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     max-width: 60rem;
     height: 5rem;
@@ -25,6 +32,21 @@
     margin: 0 var(--space-2);
 }
 
+.nav-items button{
+    cursor: pointer;
+    font: inherit;
+    border: 1px solid var(--color-primary-100);
+    border-radius: var(--border-radius-small);
+    background-color: transparent;
+    color: var(--color-primary-500);
+    padding: var(--space-2) var(--space-4);
+    transition: 0.5s;
+}
+
+.nav-items button:is(:active, :hover){
+    background-color: var(--color-primary-500-bg);
+}
+
 #mobile-menu-btn{
     display: flex;
     flex-direction: column;
@@ -36,8 +58,83 @@
     background-color: transparent;
 }
 
+#mobile-menu{
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    height: calc(100vh - 5rem);
+    width: 100%;
+    background-color: var(--color-gray-700);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mobile-menu.open{
+    display:flex;
+}
+
+
+#mobile-menu nav{
+height: 20rem;
+width: 90%;
+margin: var(--space-4) auto;
+}
+
+#mobile-menu .nav-items :is(a, button){
+    font-size: 1.75rem;
+    color: var(--color-primary-100);
+}
+
+#main-header nav{
+    display: none;
+}
+
+.nav-items{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
 #mobile-menu-btn span{
     width: 2.25rem;
     height: 0.2rem;
     background-color: var(--color-gray-100);
+}
+
+@media (min-width:48rem){
+    main{
+        margin-top: 0;
+    }
+
+    #main-header nav{
+        display: block;
+    }
+
+    #main-header{
+        position: static;
+    }
+
+    #mobile-menu-btn{
+        display: none;
+    }
+    #mobile-menu{
+        display: none;
+    }
+
+    .nav-items{
+        flex-direction: row;
+    }
+
+    .nav-items a{
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--border-radius-small);
+        transition: 0.5s;
+    }
+
+    .nav-items a:is(:active, :hover){
+        background-color: var(--color-primary-500-bg);
+    }
 }

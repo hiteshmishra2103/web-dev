@@ -92,6 +92,16 @@ a {
   padding: var(--space-4);
 }
 
+.btn-alt{
+  background-color: transparent;
+  color: var(--color-primary-500);
+  transition: 0.5s;
+}
+
+.btn-alt :is(:active, :hover){
+  background-color: var(--color-primary-500-bg);
+}
+
 /* Styling the heading of error */
 
 .alert h2{
