@@ -33,7 +33,7 @@ async function getUpdateProduct(req, res, next) {
   try {
     const product = await Product.findById(req.params.id.trim());
     res.render("admin/products/update-product", { product: product });
-  } catch (error) {
+  } catch (error) { 
     next(error);
   }
 }
