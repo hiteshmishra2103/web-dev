@@ -39,6 +39,8 @@ app.set("views", path.join(__dirname, "views"));
 // for ex:- when we will serve html file, then that html file will also require some js and css files which can't be provided by get or post request
 //then they will be provided by this code.👇
 app.use(express.static("public"));
+app.use("/products/assets",express.static("product-data"));
+
 
 //express.urlencoded() is a middleware function that will look at all the incoming requests and will look
 //for form data and if it founds form data, it will parse the form data and convert it into javascript object

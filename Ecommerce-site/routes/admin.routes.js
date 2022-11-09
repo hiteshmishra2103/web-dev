@@ -1,14 +1,22 @@
-const express=require("express");
+const express = require("express");
 
-const router= express.Router();
+const router = express.Router();
 
 //Importing custom admin related middleware functions to handle admin related requests
-const adminController=require("../controllers/admin.controller");
-const imageUploadMiddleware=require("../middlewares/image-upload");
+const adminController = require("../controllers/admin.controller");
+const imageUploadMiddleware = require("../middlewares/image-upload");
 const { authRoutes } = require("./auth.routes");
 
-router.get("/products", adminController.getProducts);//This will send request to /admin/products
-router.get("/products/new-product", adminController.getNewProduct);//This will send request to /admin/products/new-products
+router.get("/products", adminController.getProducts); //This will send request to /admin/products
+router.get("/products/new-product", adminController.getNewProduct); //This will send request to /admin/products/new-products
 
-router.post("/products",imageUploadMiddleware, adminController.createNewProduct)
-module.exports=router;  
+router.post(
+  "/products",
+  imageUploadMiddleware,
+  adminController.createNewProduct
+);
+
+router.get("/products/:id", adminController.getUpdateProduct);
+
+router.post("/products/:id",imageUploadMiddleware, adminController.updateProduct);
+module.exports = router;
