@@ -3,7 +3,7 @@ const mongodb = require("mongodb");
 const db = require("../data/database");
 
 class Product {
-  constructor(productData) {
+  constructor(productData)  {
     this.title = productData.title;
     this.summary = productData.summary;
     this.price = productData.price;
@@ -36,6 +36,8 @@ class Product {
     }
     return new Product(product);
   }
+
+  //function to find the all products from the database 
 
   static async findAll() {
     const products = await db.getDb().collection("products").find().toArray();
@@ -78,6 +80,13 @@ class Product {
   async replaceImage(newImage) {
     this.image = newImage;
     this.updateImageData();
+  }
+
+  //function for deleting the product as admin
+
+   remove() {
+    const productId=new mongodb.ObjectId(this.id);
+    return db.getDb().collection("products").deleteOne({ _id: productId });
   }
 }
 

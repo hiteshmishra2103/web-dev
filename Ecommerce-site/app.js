@@ -21,8 +21,11 @@ const errorHandlerMiddleware=require("./middlewares/error-handler");
 
 const checkAuthStatusMiddleware=require("./middlewares/check-auth");
 
+const protectRoutesMiddleware=require("./middlewares/protect-routes");
+
 const authRoutes = require("./routes/auth.routes"); //importing custom authRoutes package
 const productsRoutes=require("./routes/products.routes");
+
 const baseRoutes=require("./routes/base.routes");
 const adminRoutes=require("./routes/admin.routes");
 
@@ -58,6 +61,9 @@ app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
+
+//middleware to check whether the user is authenticated or authenticated as well as authorised for viewing the certain resources of site
+app.use(protectRoutesMiddleware);
 app.use("/admin",adminRoutes);//adding "/admin" means that this route will only
 //become accessible if request starts from "/admin"
 

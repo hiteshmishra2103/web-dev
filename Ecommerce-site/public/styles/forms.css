@@ -3,6 +3,7 @@ hr{
     margin: var(--space-4);
 
 }
+
 label{
     color: var(--color-gray-100);
     display: block;
@@ -15,4 +16,22 @@ input,textarea{
     padding: var(--space-2);
     border-radius: var(--border-radius-small);
     border: none;
+}
+
+#image-upload-control{
+    display: flex;
+    align-items: center;
+
+}
+
+#image-control-control input{
+    max-width: 15rem;
+}
+
+#image-upload-control img{
+    display: none;
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: var(--border-radius-small);
 }
