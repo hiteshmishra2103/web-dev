@@ -5,7 +5,6 @@ const express = require("express");
 //importing the csurf package for adding the csrf protection to the site
 const csrf = require("csurf");
 
-
 const expressSession=require("express-session");
 
 const createSessionConfig=require("./config/session");
@@ -23,8 +22,12 @@ const checkAuthStatusMiddleware=require("./middlewares/check-auth");
 
 const protectRoutesMiddleware=require("./middlewares/protect-routes");
 
+const cartMiddleware=require("./middlewares/cart");
+
 const authRoutes = require("./routes/auth.routes"); //importing custom authRoutes package
 const productsRoutes=require("./routes/products.routes");
+
+const cartRoutes=require("./routes/cart.routes");
 
 const baseRoutes=require("./routes/base.routes");
 const adminRoutes=require("./routes/admin.routes");
@@ -49,21 +52,31 @@ app.use("/products/assets",express.static("product-data"));
 //for form data and if it founds form data, it will parse the form data and convert it into javascript object
 //so that it can be used in our code.⭐
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 const sessionConfig=createSessionConfig();
 
 app.use(expressSession(sessionConfig));
 app.use(csrf());
 
+//activating cart middleware after adding csrf token middleware
+app.use(cartMiddleware);
+
 app.use(addCSRFTokenMiddleware);
+
+
 app.use(checkAuthStatusMiddleware);
 
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
 
+//adding cart routes 
+app.use("/cart",cartRoutes); 
+
 //middleware to check whether the user is authenticated or authenticated as well as authorised for viewing the certain resources of site
 app.use(protectRoutesMiddleware);
+
 app.use("/admin",adminRoutes);//adding "/admin" means that this route will only
 //become accessible if request starts from "/admin"
 
