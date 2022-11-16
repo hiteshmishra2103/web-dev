@@ -32,6 +32,8 @@ const cartRoutes=require("./routes/cart.routes");
 const baseRoutes=require("./routes/base.routes");
 const adminRoutes=require("./routes/admin.routes");
 
+const ordersRoutes=require("./routes/orders.routes");
+
 const app = express();
 
 //Code for setting ejs template engine
@@ -46,7 +48,6 @@ app.set("views", path.join(__dirname, "views"));
 //then they will be provided by this code.👇
 app.use(express.static("public"));
 app.use("/products/assets",express.static("product-data"));
-
 
 //express.urlencoded() is a middleware function that will look at all the incoming requests and will look
 //for form data and if it founds form data, it will parse the form data and convert it into javascript object
@@ -64,7 +65,6 @@ app.use(cartMiddleware);
 
 app.use(addCSRFTokenMiddleware);
 
-
 app.use(checkAuthStatusMiddleware);
 
 app.use(baseRoutes);
@@ -76,6 +76,8 @@ app.use("/cart",cartRoutes);
 
 //middleware to check whether the user is authenticated or authenticated as well as authorised for viewing the certain resources of site
 app.use(protectRoutesMiddleware);
+
+app.use("/orders",ordersRoutes);
 
 app.use("/admin",adminRoutes);//adding "/admin" means that this route will only
 //become accessible if request starts from "/admin"

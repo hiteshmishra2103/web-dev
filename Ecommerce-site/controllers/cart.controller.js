@@ -25,7 +25,29 @@ async function addCartItem(req, res, next) {
   });
 }
 
+function updateCartItem(req, res) {
+  const cart = res.locals.cart;
+
+  const udpatedItemData = cart.updateItem(
+    req.body.productId,
+    req.body.quantity
+  );
+
+
+  req.session.cart = cart;
+
+  res.json({
+    message: "Item Updated!",
+    updatedCartData: {
+      newTotalQuantity: cart.totalQuantity,
+      newTotalPrice: cart.totalPrice,
+      updatedItemPrice: udpatedItemData.updatedItemPrice,
+    },
+  });
+}
+
 module.exports = {
   addCartItem: addCartItem,
+  udpateCartItem: updateCartItem,
   getCart: getCart,
 };

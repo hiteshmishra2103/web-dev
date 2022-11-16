@@ -70,11 +70,14 @@ res.json({message:"Deleted product!"});
 
 }
 
+
+
 module.exports = {
   getProducts: getProducts,
   getNewProduct: getNewProduct,
   createNewProduct: createNewProduct,
   getUpdateProduct: getUpdateProduct,
   updateProduct: updateProduct,
-  deleteProduct:deleteProduct
+  deleteProduct:deleteProduct,
+  getOrders:getOrders
 };

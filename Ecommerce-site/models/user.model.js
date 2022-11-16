@@ -1,5 +1,7 @@
 const { post } = require("../routes/auth.routes");
 
+const mongodb = require("mongodb");
+
 const bcrypt = require("bcryptjs"); //third party package for encrypting the
 //password
 
@@ -18,20 +20,33 @@ class User {
     };
   }
 
+  static findById(userId) {
+    const uid = new mongodb.ObjectId(userId); //Converting userId to Object Id by using the mongodb.ObjectId()
+
+    return db
+      .getDb()
+      .collection("users")
+      .findOne(
+        { _id: uid },
+        {
+          projection: {password: 0},
+        }
+      );
+  }
+
   getUserWithSameEmail() {
     return db.getDb().collection("users").findOne({
       email: this.email,
     });
   }
 
-  async exitsAlready(){
-    const existingUser=await this.getUserWithSameEmail()
-    if(existingUser){
+  async exitsAlready() {
+    const existingUser = await this.getUserWithSameEmail();
+    if (existingUser) {
       return true;
     }
     return false;
   }
-
 
   async signup() {
     const hashedPassword = await bcrypt.hash(this.password, 12);
@@ -43,8 +58,8 @@ class User {
       address: this.address,
     });
   }
-  hasMatchingPassword(hashedPassword){
-    return bcrypt.compare(this.password, hashedPassword)
+  hasMatchingPassword(hashedPassword) {
+    return bcrypt.compare(this.password, hashedPassword);
   }
 }
 

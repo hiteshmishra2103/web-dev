@@ -13,6 +13,10 @@ router.get("/", cartController.getCart); // 👉/cart/
 
 router.post("/items", cartController.addCartItem);// /cart/items 
 
+//We are using the patch route because we are updating the parts of existing data
+
+router.patch("/items", cartController.udpateCartItem);
+
 //exporting the router, so that other files could access the get and post routes using
 //the router method
 module.exports = router;

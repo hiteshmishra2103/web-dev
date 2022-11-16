@@ -1,6 +1,7 @@
 <%- include("../../shared/includes/head", {pageTitle:"Your Cart"}) %>
 <link rel="stylesheet" href="/styles/base.css">
 <link rel="stylesheet" href="/styles/cart.css">
+<script src="/scripts/cart-item-management.js" defer></script>
 </head>
 <body>
     <%- include("../../shared/includes/header") %> 
@@ -17,13 +18,20 @@
         <% }%>
 </ul>
 <div id="cart-total">
-<p>
-    Total:₹<%=locals.cart.totalPrice%>
+<p> 
+  Total:₹<span id="cart-total-price">
+  <%=locals.cart.totalPrice%>
+</span>
+    
 </p>
-
-<button class="btn">
-Buy Products
-</button>
+<% if(locals.isAuth){ %>
+    <form action="/orders" method="post">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+        <button class="btn">Buy Products</button>
+    </form>
+    <% } else{%>
+        <p id="cart-total-fallback"> Login to proceed and purchase the items. </p>
+        <% } %>
 </div>
 
 </main>

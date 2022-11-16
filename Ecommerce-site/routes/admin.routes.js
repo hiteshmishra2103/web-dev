@@ -22,3 +22,5 @@ router.post("/products/:id",imageUploadMiddleware, adminController.updateProduct
 module.exports = router;
 
 router.delete("/products/:id", adminController.deleteProduct)
+
+router.get("/orders", adminController.getOrders);
