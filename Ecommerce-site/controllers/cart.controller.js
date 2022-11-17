@@ -30,7 +30,7 @@ function updateCartItem(req, res) {
 
   const udpatedItemData = cart.updateItem(
     req.body.productId,
-    req.body.quantity
+    +req.body.quantity
   );
 
 

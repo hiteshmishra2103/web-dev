@@ -18,9 +18,17 @@ router.post(
 
 router.get("/products/:id", adminController.getUpdateProduct);
 
-router.post("/products/:id",imageUploadMiddleware, adminController.updateProduct);
+router.post(
+  "/products/:id",
+  imageUploadMiddleware,
+  adminController.updateProduct
+);
 module.exports = router;
 
-router.delete("/products/:id", adminController.deleteProduct)
+router.delete("/products/:id", adminController.deleteProduct);
 
 router.get("/orders", adminController.getOrders);
+
+//route for updating the order status
+
+router.patch("/orders/:id", adminController.updateOrder);

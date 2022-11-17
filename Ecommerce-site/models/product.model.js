@@ -3,7 +3,7 @@ const mongodb = require("mongodb");
 const db = require("../data/database");
 
 class Product {
-  constructor(productData)  {
+  constructor(productData) {
     this.title = productData.title;
     this.summary = productData.summary;
     this.price = productData.price;
@@ -37,11 +37,32 @@ class Product {
     return new Product(product);
   }
 
-  //function to find the all products from the database 
+  //function to find the all products from the database
 
   static async findAll() {
     const products = await db.getDb().collection("products").find().toArray();
 
+    return products.map(function (productDocument) {
+      return new Product(productDocument);
+    });
+  }
+
+  static async findMultiple(ids) {
+    //converting the string of string ids into an array of mongodb objecId objects
+    const productIds = ids.map(function (id) {
+      return new mongodb.ObjectId(id);
+    });
+
+    //to extract products which are present in productIds array
+    //productIds is an array of mongodb objectIds 
+    const products = await db
+      .getDb()
+      .collection("products")
+      .find({ _id: { $in: productIds } })
+      .toArray();
+
+      //converting array of product documents into an array of product objects
+      //based on product blueprint
     return products.map(function (productDocument) {
       return new Product(productDocument);
     });
@@ -84,8 +105,8 @@ class Product {
 
   //function for deleting the product as admin
 
-   remove() {
-    const productId=new mongodb.ObjectId(this.id);
+  remove() {
+    const productId = new mongodb.ObjectId(this.id);
     return db.getDb().collection("products").deleteOne({ _id: productId });
   }
 }
