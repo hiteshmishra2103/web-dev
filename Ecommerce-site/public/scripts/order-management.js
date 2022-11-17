@@ -1,13 +1,15 @@
-const updateOrderFormElements = document.querySelectorAll(".order-actions form");
+const updateOrderFormElements = document.querySelectorAll(
+  '.order-actions form'
+);
 
 async function updateOrder(event) {
   event.preventDefault();
   const form = event.target;
 
   const formData = new FormData(form);
-  const newStatus = formData.get("status");
-  const orderId = formData.get("orderid");
-  const csrfToken = formData.get("_csrf");
+  const newStatus = formData.get('status');
+  const orderId = formData.get('orderid');
+  const csrfToken = formData.get('_csrf');
 
   let response;
 
@@ -19,24 +21,25 @@ async function updateOrder(event) {
         _csrf: csrfToken,
       }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
   } catch (error) {
-    alert("Something went wrong - could not update order status.");
+    alert('Something went wrong - could not update order status.');
     return;
   }
 
-  if(!response.ok){
-    alert("Something went wrong - could not update order status!");
+  if (!response.ok) {
+    alert('Something went wrong - could not update order status.');
     return;
   }
 
   const responseData = await response.json();
 
-  form.parentElement.parentElement.querySelector('.badge').textContent = responseData.newStatus.toUppercase();
+  form.parentElement.parentElement.querySelector('.badge').textContent =
+    responseData.newStatus.toUpperCase();
 }
 
 for (const updateOrderFormElement of updateOrderFormElements) {
-  updateOrderFormElement.addEventListener("submit", updateOrder);
+  updateOrderFormElement.addEventListener('submit', updateOrder);
 }
