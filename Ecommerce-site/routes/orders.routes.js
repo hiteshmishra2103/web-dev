@@ -10,4 +10,8 @@ router.post("/", ordersController.addOrder);//post request will be sent to /orde
 
 router.get("/", ordersController.getOrders);
 
+router.get("/success", ordersController.getSuccess);
+
+router.get("/failure", ordersController.getFailure);
+
 module.exports = router;

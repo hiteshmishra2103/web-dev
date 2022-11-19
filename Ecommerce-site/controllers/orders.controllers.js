@@ -2,13 +2,26 @@ const Order = require("../models/order.model");
 const User = require("../models/user.model");
 const { get } = require("../routes/auth.routes");
 
+//the random key(secret key) which I had provided as an argument to the stripe package will be
+//used internally by stripe package for sending the requests to stripe
+//⚠️Don't share this random key to anyone because this key can be used to make
+//charges connected to your account.
+//The secret key is used in your backend code to send any other request to Stripe's API.
+//You need to be careful never to leak your secret key,
+//as it could be used to access your account and cause all sorts of troubles (refunding past charges,
+//canceling subscriptions, deleting saved customers, etc.).
+
+const stripe = require("stripe")(
+  "sk_test_51M5TxkSBfbeuMwK3Di5lPq9wovBMtPGIDNTmcS8BDXI5S1HOqqTX5hDCylm5mOgnZwTA3FSUl3gC7mOifyp6lK7g00sICDj6yM"
+);
+
 async function getOrders(req, res, next) {
-  try{
-    const orders=await Order.findAllForUser(res.locals.uid);
+  try {
+    const orders = await Order.findAllForUser(res.locals.uid);
     res.render("customer/orders/all-orders", {
-      orders:orders
+      orders: orders,
     });
-  }catch(error){
+  } catch (error) {
     next(error);
   }
 }
@@ -32,9 +45,46 @@ async function addOrder(req, res, next) {
     next(error);
     return;
   }
-
+  //removing the items from the cart and adding them to the orders page
   req.session.cart = null;
-  res.redirect("/orders");
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price_data: {
+          currency: "INR",
+          product_data: {
+            name: "dummy",
+          },
+          unit_amount_decimal: 10.99,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: `localhost:3000/orders/success`,
+    cancel_url: `localhost:3000/orders/failure`,
+  });
+
+  //we redirect user to stripe website here 👇, so that on the stripe website payment can be made
+  //securely⭐ and when the payment will be completed then stripe will redirect user to the main website
+  //depending on the status of payment(success or cancel). Code of redirecting in line 66 and 67 stripe.
+
+  res.redirect(303, session.url);
 }
 
-module.exports = { addOrder: addOrder, getOrders: getOrders };
+function getSuccess(req, res) {
+  res.render("customer/orders/success");
+}
+
+function getFailure(req, res) {
+  res.render("customer/orders/failure");
+}
+
+module.exports = {
+  addOrder: addOrder,
+  getOrders: getOrders,
+  getFailure: getFailure,
+  getSuccess: getSuccess,
+};
