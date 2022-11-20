@@ -1,4 +1,4 @@
-const mongodb = require("mongodb");
+const mongodb = require('mongodb');
 
 const MongoClient = mongodb.MongoClient;
 
@@ -12,22 +12,19 @@ if(process.env.MONGODB_URL){
 mongodbUrl=process.env.MONGODB_URL;
 }
 
-async function connect() {
+async function initDatabase() {
   const client = await MongoClient.connect(mongodbUrl);
-  //for establishing the connection to the server as whole
-
-  database = client.db("blog"); //for establishing the connecting to a particular
-  //database in the server. for ex: here we will connect to blog
+  database = client.db('deployment');
 }
 
 function getDb() {
   if (!database) {
-    throw { message: "Database connection not established!" };
-  } 
+    throw new Error('No database connected!');
+  }
   return database;
 }
 
 module.exports = {
-  connectToDatabase: connect,
+  initDatabase: initDatabase,
   getDb: getDb,
 };

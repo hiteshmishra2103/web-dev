@@ -8,6 +8,12 @@ const db=require("./data/database");
 
 const app = express();
 
+let port=3000;
+
+if(process.env.PORT){
+  port=process.env.PORT;
+}
+
 // Activate EJS view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -25,5 +31,5 @@ app.use(function (error, req, res, next) {
 });
 
 db.connectToDatabase().then(function(){
-  app.listen(3000);
+  app.listen(port);
 })
