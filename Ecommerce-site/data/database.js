@@ -10,6 +10,7 @@ async function connectToDatabase() {
   //"mongodb://127.0.0.1" is the url that points to the mongodb server which is
   //passed as an argument to the MongoClient.connect(), it will then give access
   // to the connected database server.
+  
   const client=await MongoClient.connect("mongodb://127.0.0.1:27017");
 
   //client.db() will give access to the specific database on the server.

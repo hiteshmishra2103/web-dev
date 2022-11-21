@@ -8,8 +8,8 @@ let mongodbUrl='mongodb://127.0.0.1:27017';
 
 //process.env is the object which contains all the environment variables which are exposed
 //to your nodejs program by the environment
-if(process.env.MONGODB_URL){
-mongodbUrl=process.env.MONGODB_URL;
+if(process.env.MONGODB_URI){
+mongodbUrl=process.env.MONGODB_URI;
 }
 
 async function connect() {
