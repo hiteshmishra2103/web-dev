@@ -5,6 +5,14 @@ const express = require("express");
 //importing the csurf package for adding the csrf protection to the site
 const csrf = require("csurf");
 
+//setting environment variables for deployement to render 
+
+let port=3000;
+
+if(process.env.PORT){
+  port=process.env.PORT;
+}
+
 const expressSession = require("express-session");
 
 const createSessionConfig = require("./config/session");
@@ -84,7 +92,7 @@ app.use("/orders", protectRoutesMiddleware,ordersRoutes);
 app.use("/admin", protectRoutesMiddleware,adminRoutes); //adding "/admin" means that this route will only
 //become accessible if request starts from "/admin"
 
-app.use(notFoundMiddleware);
+app.use(notFoundMiddleware);  
 
 app.use(errorHandlerMiddleware);
 
@@ -92,7 +100,7 @@ app.use(errorHandlerMiddleware);
 // listen to the port no. 3000 otherwise throw an error.
 db.connectToDatabase()
   .then(function () {
-    app.listen(3000);
+    app.listen(port);
   })
   .catch(function (error) {
     console.log("Failed to connect to the database!");
