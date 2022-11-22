@@ -1,25 +1,22 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
+const express = require("express");
 
-const blogRoutes = require('./routes/blog');
-
-const db=require("./data/database");
+const blogRoutes = require("./routes/blog");
+const db = require("./data/database");
 
 const app = express();
+let port = 3000;
 
-let port=3000;
-
-if(process.env.PORT){
-  port=process.env.PORT;
+if (process.env.PORT) {
+  port = process.env.PORT;
 }
-
 // Activate EJS view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true })); // Parse incoming request bodies
-app.use(express.static('public')); // Serve static files (e.g. CSS files)
+app.use(express.static("public")); // Serve static files (e.g. CSS files)
 
 app.use(blogRoutes);
 
