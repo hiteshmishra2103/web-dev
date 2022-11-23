@@ -31,22 +31,35 @@ function createCommentsList(comments) {
 async function fetchCommentsForPost() {
   const postId = loadCommentsBtnElement.dataset.postid;
 
-  const response = await fetch(`/posts/${postId}/comments`, {});
+  try {
+    const response = await fetch(`/posts/${postId}/comments`, {});
 
-  //response.json() will give us the parsed response body data to javascript object
-  const responseData = await response.json();
+    //for handling server side error we use response.ok and try and catch block for
+    //handling technical errors like user is offline
+    if (!response.ok) {
+      alert("Fetching comments failed!");
+      return;
+    }
 
-  if (responseData && responseData.length > 0) {
-    const commentListElement = await createCommentsList(responseData);
-    //Replacing the comments section content with the new commentListElement content
+    const responseData = await response.json(); //response will be converted to JAVASCRIPT object
 
-    //setting the innerHTML of commentsSectionElement to an empty
-    //string to remove the content that's currently in it
-    commentsSectionElement.innerHTML = "";
-    //adding the list of comments to commentsSectionElement
-    commentsSectionElement.appendChild(commentListElement);
-  }else{
-    commentsSectionElement.firstElementChild.textContent="We could not find any comments, maybe add one?";  
+    //response.json() will give us the parsed response body data to javascript object
+
+    if (responseData && responseData.length > 0) {
+      const commentListElement = await createCommentsList(responseData);
+      //Replacing the comments section content with the new commentListElement content
+
+      //setting the innerHTML of commentsSectionElement to an empty
+      //string to remove the content that's currently in it
+      commentsSectionElement.innerHTML = "";
+      //adding the list of comments to commentsSectionElement
+      commentsSectionElement.appendChild(commentListElement);
+    } else {
+      commentsSectionElement.firstElementChild.textContent =
+        "We could not find any comments, maybe add one?";
+    }
+  } catch (error) {
+    alert("Gettng Comments failed, please check your internet connection or try reloading the page!");
   }
 }
 
@@ -64,19 +77,34 @@ async function saveComment(event) {
     text: enteredText,
   };
 
-  const response = await fetch(`/posts/${postId}/comments`, {
-    method: "POST",
-    //JSON.parse() takes a JSON string and transforms it into a JavaScript object.
-    //JSON.stringify takes a javascript object and transforms it into a JSON data format.
-    body: JSON.stringify(comment),
-    headers: {
-      //following👇 code will tell the server that this request carries some
-      //JSON DATA
-      "Content-Type": "application/json",
-    },
-  });
-  //fetching comments for post
-  fetchCommentsForPost();
+  try {
+    const response = await fetch(`/posts/${postId}/comments`, {
+      method: "POST",
+      //JSON.parse() takes a JSON string and transforms it into a JavaScript object.
+      //JSON.stringify takes a javascript object and transforms it into a JSON data format.
+      body: JSON.stringify(comment),
+      headers: {
+        //following👇 code will tell the server that this request carries some
+        //JSON DATA
+        "Content-Type": "application/json",
+      },
+    });
+
+    //The ok read-only property of the Response interface contains a Boolean stating whether the
+    //response was successful (status in the range 200-299) or not.
+    //what is response.ok dekhle 487 video me h
+
+    if (response.ok) {
+      //fetching comments for post
+      fetchCommentsForPost();
+    } else {
+      alert("Could not send comments!");
+    }
+  } catch (error) {
+    alert(
+      "Could not send requests,Please check your internet connection or try reloading the page!"
+    );
+  }
 }
 
 loadCommentsBtnElement.addEventListener("click", fetchCommentsForPost);
