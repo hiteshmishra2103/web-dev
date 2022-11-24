@@ -1,5 +1,8 @@
 <article class="post-item">
-  <h2><%= post.title %></h2>
+  <h2 id="post-title"><%= post.title %></h2>
+  <div id="posterimage">
+    <img src="<%= post.imagePath %>" alt="post thumbnail">
+  </div>
   <p class="post-item-author">By <%= post.author.name %></p>
   <p><%= post.summary %></p>
   <div class="post-actions">

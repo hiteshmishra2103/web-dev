@@ -31,7 +31,7 @@ function createCommentsList(comments) {
 async function fetchCommentsForPost() {
   const postId = loadCommentsBtnElement.dataset.postid;
 
-  try {
+  try { 
     const response = await fetch(`/posts/${postId}/comments`, {});
 
     //for handling server side error we use response.ok and try and catch block for
@@ -41,6 +41,8 @@ async function fetchCommentsForPost() {
       return;
     }
 
+    //parsing the response body which we got from send the request by using fetch
+    //from the server
     const responseData = await response.json(); //response will be converted to JAVASCRIPT object
 
     //response.json() will give us the parsed response body data to javascript object
@@ -82,6 +84,8 @@ async function saveComment(event) {
       method: "POST",
       //JSON.parse() takes a JSON string and transforms it into a JavaScript object.
       //JSON.stringify takes a javascript object and transforms it into a JSON data format.
+      
+      //JSON format is the common data format for exchanging data when using ajax
       body: JSON.stringify(comment),
       headers: {
         //following👇 code will tell the server that this request carries some

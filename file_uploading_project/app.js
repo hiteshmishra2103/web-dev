@@ -12,7 +12,10 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
-app.use("/images", express.static("images"));
+
+//adding "/images" before express.static means that the following middleware will
+//become active if the requests starts with "/images" 
+app.use(express.static('images'));
 
 app.use(userRoutes);
 

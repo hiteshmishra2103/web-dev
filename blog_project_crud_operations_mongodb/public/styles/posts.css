@@ -1,7 +1,7 @@
 /* All posts page */
 
-h1 {
-  text-align: left;
+#all-posts h1 {
+  text-align: center;
 }
 
 #all-posts {
@@ -24,6 +24,10 @@ h1 {
 .post-item h2,
 .post-item p {
   margin: 0.5rem 0;
+}
+
+.post-item h2{
+  font-size: 1.2rem;
 }
 
 .post-item-author {
@@ -87,3 +91,20 @@ h1 {
   max-width: 30rem;
   border: 1px solid rgb(204, 204, 204);
 }
+
+#posterimage img{
+  width: 90%;
+  height: 90%;
+}
+
+#thumbnail img{
+  width: 80%;
+  height: 80%;
+  margin: 1rem;
+}
+
+#thumbnail{
+  text-align: center;
+  margin: 1rem;
+}
+

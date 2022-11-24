@@ -32,3 +32,9 @@ input, textarea {
 .form-control {
   margin: 0.5rem 0;
 }
+
+#image-preview{
+  display: none;
+  width: 100%;
+  height: 100%;
+}

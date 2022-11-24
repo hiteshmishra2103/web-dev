@@ -3,13 +3,14 @@
   <head>
     <%- include('includes/head', { title: 'Update post' }) %>
     <link rel="stylesheet" href="/styles/forms.css" />
+    <script src="/scripts/image-preview.js" defer></script>
   </head>
 
   <body>
     <%- include('includes/header') %>
     <main>
       <h1>Update post</h1>
-      <form action="/posts/<%= post._id %>/edit" method="POST">
+      <form action="/posts/<%= post._id %>/edit" method="POST" enctype="multipart/form-data">
         <div class="form-control">
           <label for="title">Title</label>
           <input
@@ -18,6 +19,19 @@
             name="title"
             value="<%= post.title %>"
             required
+          />
+        </div>
+        <div class="form-control">
+          <label for="image">Post thumbnail</label>
+          <!-- below is the image👇 tag to show the preview of the image -->
+          
+          <img src="/<%= post.imagePath %>" alt="Your picked image." id="image-preview" style="display: block;"/>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            required
+            accept="images/jpg, images/png, images/svg"
           />
         </div>
         <div class="form-control">

@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <%- include('includes/head', { title: 'Add new post' }) %>
+    <link rel="stylesheet" href="/styles/forms.css" />
+   <script src="/scripts/image-preview.js" defer></script>
+  </head>
 
-<head>
-  <%- include('includes/head', { title: 'Add new post' }) %>
-  <link rel="stylesheet" href="/styles/forms.css">
-</head>
+  <body>
+    <%- include('includes/head  er') %>
+    <main>
+      <h1>Add a new post</h1>
+      <!-- When your form includes files then you have to add an extra attribute "enctype" and set its value to 
+    multipart/form-data -->
+      <form action="/posts" method="POST" enctype="multipart/form-data">
+        <div class="form-control">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" required />
+        </div>
+        <div class="form-control">
+          <!-- below is the image👇 tag to show the preview of the image -->
+          <img src="" alt="Your picked image." id="image-preview">
 
-<body>
-  <%- include('includes/header') %>
-  <main>
-    <h1>Add a new post</h1>
-    <form action="/posts" method="POST">
-      <div class="form-control">
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" required>
-      </div>
-      <div class="form-control">
-        <label for="summary">Summary</label>
-        <input type="text" id="summary" name="summary" required maxlength="255">
-      </div>
-      <div class="form-control">
-        <label for="content">Post Content</label>
-        <textarea id="content" name="content" required rows="5"></textarea>
-      </div>
-      <div class="form-control">
-        <label for="author">Select Author</label>
-        <select id="author" name="author">
-          <% for(const author of authors){  %>
-            <option value="<%= author._id  %>"><%=  author.name %></option>
+          <label for="image">Post thumbnail</label>
+          <!-- filer picker input element -->
+          <input
+            type="file"
+            id="image"
+            name="image"
+            required
+            accept="images/jpg, images/png, images/svg"
+          />
+        </div>
+        <div class="form-control">
+          <label for="summary">Summary</label>
+          <input
+            type="text"
+            id="summary"
+            name="summary"
+            required
+            maxlength="255"
+          />
+        </div>
+        <div class="form-control">
+          <label for="content">Post Content</label>
+          <textarea id="content" name="content" required rows="5"></textarea>
+        </div>
+        <div class="form-control">
+          <label for="author">Select Author</label>
+          <select id="author" name="author">
+            <% for(const author of authors){ %>
+            <option value="<%= author._id  %>"><%= author.name %></option>
             <% } %>
-        </select>
-      </div>
-      <button class="btn">Add Post</button>
-    </form>
-  </main>
-</body>
-
+          </select>
+        </div>
+        <button class="btn">Add Post</button>
+      </form>
+    </main>
+  </body>
 </html>
