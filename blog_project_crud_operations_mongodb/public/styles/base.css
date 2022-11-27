@@ -116,3 +116,8 @@ ol {
   color: white;
   font-size: 1.2rem;
 }
+
+main#errorpage-main{
+  margin-top: calc(100vh - 75vh);
+  text-align: center;
+}

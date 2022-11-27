@@ -2,6 +2,8 @@ const express = require("express");
 const mongodb = require("mongodb");
 const multer = require("multer");
 
+const app = express();
+
 const bcrypt = require("bcryptjs");
 
 //multer.diskStorage() creates a new storage object as expected by multer
@@ -39,20 +41,28 @@ router.get("/posts", async function (req, res) {
       .collection("posts")
       .find({}, { title: 1, summary: 1, "author.name": 1 })
       .toArray();
+
     res.render("posts-list", {
       posts: posts,
       alreadyLoggedIn: alreadyLoggedIn,
     });
   } catch (error) {
+ 
     next(error);
   }
 });
 
 router.get("/new-post", async function (req, res) {
-  if (!res.locals.isAdmin) {
-    return res.status(403).render("403");
+  if (!res.locals.isAuth) {
+    req.session.inputData = {
+      hasError: true,
+      message: "Create a account to start creating a post!",
+    };
+    
+    return res.redirect("/signup");
   }
   const authors = await db.getDb().collection("authors").find().toArray();
+               
   res.render("create-post", { authors: authors });
 });
 
@@ -111,6 +121,7 @@ router.get("/login", async function (req, res, next) {
 
 router.get("/analytics", async function (req, res, next) {
   if (!res.locals.isAuth) {
+                   ;
     return res.status(401).render("401");
   }
 
@@ -120,8 +131,10 @@ router.get("/analytics", async function (req, res, next) {
     .findOne({ _id: req.session.user.id });
 
   if (!user.isAdmin || !user) {
+                     ;
     return res.status(403).render("403");
   }
+                     ;
   res.render("admin/analytics");
 });
 
@@ -160,7 +173,7 @@ router.post("/signup", async function (req, res) {
   if (existingUser) {
     req.session.inputData = {
       hasError: true,
-      message: "Invalid input - please check your data.",
+      message: "User exists already, try login!",
       email: enteredEmail,
       confirmEmail: enteredConfirmEmail,
       password: enteredPassword,
@@ -253,10 +266,6 @@ router.post("/login", async function (req, res, next) {
 });
 
 router.post("/posts", upload.single("image"), async function (req, res) {
-  if (!res.locals.isAdmin) {
-    return res.status(403).render("403");
-  }
-
   let authorId;
   let author;
 
@@ -383,10 +392,8 @@ router.post("/posts/:id/edit", upload.single("image"), async function (
 });
 
 router.post("/posts/:id/delete", async function (req, res) {
-
-  
   if (!res.locals.isAdmin) {
-    console.log("You are not authorized!")
+    console.log("You are not authorized!");
     return res.status(403).render("403");
   }
 
@@ -399,13 +406,8 @@ router.post("/posts/:id/delete", async function (req, res) {
 });
 
 router.post("/logout", async function (req, res) {
-  if (req.session.user) {
-    userId = req.session.user.id;
-    req.session.destroy(function () {
-      res.redirect("/");
-    });
-    return;
-  }
+  req.session.user = null;
+  req.session.isAuthenticated = false;
   res.redirect("/");
 });
 

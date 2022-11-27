@@ -1,6 +1,6 @@
 <header id="main-header">
   <div id="logo">
-    <a href="/">Mishra's Blog</a>
+    <a href="/">Blog</a>
   </div>
   <nav>
     <ul>
@@ -8,10 +8,10 @@
         <a href="/posts">All Posts</a>
       </li>
 
-      <% if(locals.isAdmin) {%>
       <li>
         <a href="/new-post">Create Post</a>
       </li>
+      <% if(locals.isAdmin) {%>
       <li>
         <a href="/analytics">Blog Analytics</a>
       </li>
