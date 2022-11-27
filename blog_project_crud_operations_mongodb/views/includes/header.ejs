@@ -1,15 +1,34 @@
 <header id="main-header">
   <div id="logo">
-    <a href="/">MyBlog</a>
+    <a href="/">Mishra's Blog</a>
   </div>
   <nav>
     <ul>
       <li>
         <a href="/posts">All Posts</a>
       </li>
+
+      <% if(locals.isAdmin) {%>
       <li>
         <a href="/new-post">Create Post</a>
       </li>
+      <li>
+        <a href="/analytics">Blog Analytics</a>
+      </li>
+      <%}%>
+
+      <% if(!locals.isAuth) {%>
+        <li><a href="/signup">Signup</a></li>
+        <li><a href="/login">Login</a></li>
+        <%}%>
+
+        <%if(locals.isAuth){%>
+          <li>
+            <form action="/logout" method="post">
+              <button>Logout</button>
+            </form>
+          </li>
+          <%}%>
     </ul>
   </nav>
 </header>

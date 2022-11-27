@@ -1,15 +1,20 @@
 <article class="post-item">
   <h2 id="post-title"><%= post.title %></h2>
   <div id="posterimage">
-    <img src="<%= post.imagePath %>" alt="post thumbnail">
+    <img src="<%= post.imagePath %>" alt="post thumbnail" />
   </div>
   <p class="post-item-author">By <%= post.author.name %></p>
   <p><%= post.summary %></p>
   <div class="post-actions">
+    <% if(locals.isAdmin) {%>
     <form action="/posts/<%= post._id %>/delete" method="POST">
       <button class="btn btn-alt">Delete Post</button>
     </form>
+    <%}%>
+    
+    <%if(locals.isAdmin) {%>
     <a href="/posts/<%= post._id %>/edit">Edit Post</a>
+    <%}%>
     <a class="btn" href="/posts/<%= post._id %>">View Post</a>
   </div>
 </article>

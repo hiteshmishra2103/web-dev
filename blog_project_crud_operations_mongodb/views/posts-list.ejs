@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <%- include('includes/head', { title: 'All Posts' }) %>
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/posts.css" />
+  </head>
 
-<head>
-  <%- include('includes/head', { title: 'All Posts' }) %>
-  <link rel="stylesheet" href="/styles/posts.css">
-</head>
-
-<body>
-  <%- include('includes/header') %>
-  <main id="all-posts">
-    <h1>All Posts</h1>
-    <% if(!posts || posts.length === 0) { %>
-      <p>No posts found - maybe start creating some?</p>
+  <body>
+    <%- include('includes/header') %>
+    <main id="all-posts">
+      <h1>All Posts</h1>
+      <% if(alreadyLoggedIn) {%>
+      <p id="alreadyLoggedIn"><%= alreadyLoggedIn.message %></p>
+      <%}%>
+      <p id="input-error"></p>
+      <% if(!posts || posts.length === 0) { %>
+      <p>No posts found!</p>
       <a class="btn" href="/new-post">Create a new Post</a>
-    <% }else { %>
+      <% }else { %>
       <ol id="posts-list">
         <% for(const post of posts) { %>
-          <li>
-            <%- include('includes/post-item', { post: post }) %>
-          </li>
+        <li>
+          <%- include('includes/post-item', { post: post }) %>
+        </li>
         <% } %>
       </ol>
-    <% } %>
-  </main> 
-</body>
-
+      <% } %>
+    </main>
+  </body>
 </html>

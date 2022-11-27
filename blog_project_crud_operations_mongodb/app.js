@@ -2,10 +2,29 @@ const path = require("path");
 
 const express = require("express");
 
+const session = require("express-session");
+
+const mongodbStore = require("connect-mongodb-session");
+
 const blogRoutes = require("./routes/blog");
 const db = require("./data/database");
 
+const MongoDbStore = mongodbStore(session);
+
 const app = express();
+
+let mongodbUrl = "mongodb://127.0.0.1:27017";
+
+if (process.env.MONGODB_URI) {
+  mongodbUrl = process.env.MONGODB_URI;
+}
+
+const sessionStore = new MongoDbStore({
+  uri: mongodbUrl,
+  databaseName: "blog",
+  collection: "sessions",
+});
+
 let port = 3000;
 
 if (process.env.PORT) {
@@ -22,6 +41,39 @@ app.use(express.json());
 app.use(express.static("public")); // Serve static files (e.g. CSS files)
 app.use("/images", express.static("images"));
 
+app.use(
+  session({
+    secret: "superdupersecret",
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      maxAge: 3 * 24 * 60 * 60 * 1000, //cookie age is set to 3 days
+    },
+  })
+);
+
+
+//middleware to provide isAdmin and isAuth values to all templates
+app.use(async function (req, res, next) {
+  const user = req.session.user;
+  const isAuth = req.session.isAuthenticated;
+
+  if (!user || !isAuth) {
+    return next();
+  }
+  const userDoc = await db
+    .getDb()
+    .collection("users")
+    .findOne({ _id: user.id });
+
+  const isAdmin = userDoc.isAdmin;
+
+  res.locals.isAuth = isAuth;
+  res.locals.isAdmin = isAdmin;
+
+  next();
+});
 
 app.use(blogRoutes);
 

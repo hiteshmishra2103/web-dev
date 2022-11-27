@@ -6,8 +6,11 @@
   },
   "keywords": [],
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^3.1.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.3",
     "mongodb": "^4.10.0",
     "multer": "^1.4.5-lts.1"
   },

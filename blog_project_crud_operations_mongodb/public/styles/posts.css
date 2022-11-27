@@ -108,3 +108,11 @@
   margin: 1rem;
 }
 
+#alreadyLoggedIn{
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background-color: rgb(251, 217, 217);
+  color: rgb(144, 33, 33);
+  border-radius: 4px;
+}
+

@@ -38,6 +38,7 @@
           Load Comments
         </button>
       </section>
+      <%if(locals.isAuth){%>
       <section id="comments-form">
         <h2>Leave a comment</h2>
         <form data-postid="<%= post._id %>">
@@ -52,6 +53,10 @@
           <button class="btn">Save Comment</button>
         </form>
       </section>
+      
+      <%} else{%>
+        <p id="input-error"><a href="/login" class="btn btn-alt">Login</a> to add a new comment!</p>
+      <%}%>
     </main>
   </body>
 </html>
