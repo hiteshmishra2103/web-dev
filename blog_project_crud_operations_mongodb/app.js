@@ -6,6 +6,8 @@ const session = require("express-session");
 
 const mongodbStore = require("connect-mongodb-session");
 
+const csrf=require("csurf");
+
 const blogRoutes = require("./routes/blog");
 const db = require("./data/database");
 
@@ -24,6 +26,8 @@ const sessionStore = new MongoDbStore({
   databaseName: "blog",
   collection: "sessions",
 });
+
+
 
 let port = 3000;
 
@@ -49,10 +53,14 @@ app.use(
     store: sessionStore,
     cookie: {
       maxAge: 3 * 24 * 60 * 60 * 1000, //cookie age is set to 3 days
+      sameSite: "lax",
     },
   })
 );
 
+//CSRF package uses sessions, that's why I will activate it after the activating the session
+
+app.use(csrf());
 
 //middleware to provide isAdmin and isAuth values to all templates
 app.use(async function (req, res, next) {

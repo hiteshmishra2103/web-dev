@@ -24,6 +24,9 @@
 .post-item h2,
 .post-item p {
   margin: 0.5rem 0;
+  white-space: pre-wrap; /* This ensures that line breaks and whitespace are kept */
+  overflow-wrap: break-word;
+  word-break: break-all;  
 }
 
 .post-item h2{
@@ -61,6 +64,8 @@
 
 #body {
   white-space: pre-wrap; /* This ensures that line breaks and whitespace are kept */
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 #comments {
@@ -115,4 +120,5 @@
   color: rgb(144, 33, 33);
   border-radius: 4px;
 }
+
 

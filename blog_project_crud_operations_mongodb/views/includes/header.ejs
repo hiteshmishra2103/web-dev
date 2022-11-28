@@ -3,32 +3,13 @@
     <a href="/">Blog</a>
   </div>
   <nav>
-    <ul>
-      <li>
-        <a href="/posts">All Posts</a>
-      </li>
-
-      <li>
-        <a href="/new-post">Create Post</a>
-      </li>
-      <% if(locals.isAdmin) {%>
-      <li>
-        <a href="/analytics">Blog Analytics</a>
-      </li>
-      <%}%>
-
-      <% if(!locals.isAuth) {%>
-        <li><a href="/signup">Signup</a></li>
-        <li><a href="/login">Login</a></li>
-        <%}%>
-
-        <%if(locals.isAuth){%>
-          <li>
-            <form action="/logout" method="post">
-              <button>Logout</button>
-            </form>
-          </li>
-          <%}%>
-    </ul>
+    <%- include("nav-items") %>
   </nav>
+  <div id="aside">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </header>
+
+

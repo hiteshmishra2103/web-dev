@@ -3,7 +3,7 @@
   <head>
     <%- include('includes/head', { title: 'Add new post' }) %>
     <link rel="stylesheet" href="/styles/forms.css" />
-   <script src="/scripts/image-preview.js" defer></script>
+    <script src="/scripts/image-preview.js" defer></script>
   </head>
 
   <body>
@@ -13,13 +13,14 @@
       <!-- When your form includes files then you have to add an extra attribute "enctype" and set its value to 
     multipart/form-data -->
       <form action="/posts" method="POST" enctype="multipart/form-data">
+        <input type="hidden" value="<%= csrfToken %>" name="_csrf" />
         <div class="form-control">
           <label for="title">Title</label>
           <input type="text" id="title" name="title" required />
         </div>
         <div class="form-control">
           <!-- below is the image👇 tag to show the preview of the image -->
-          <img src="" alt="Your picked image." id="image-preview">
+          <img src="" alt="Your picked image." id="image-preview" />
 
           <label for="image">Post thumbnail</label>
           <!-- filer picker input element -->

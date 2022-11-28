@@ -2,8 +2,6 @@ const express = require("express");
 const mongodb = require("mongodb");
 const multer = require("multer");
 
-const app = express();
-
 const bcrypt = require("bcryptjs");
 
 //multer.diskStorage() creates a new storage object as expected by multer
@@ -47,7 +45,6 @@ router.get("/posts", async function (req, res) {
       alreadyLoggedIn: alreadyLoggedIn,
     });
   } catch (error) {
- 
     next(error);
   }
 });
@@ -58,17 +55,24 @@ router.get("/new-post", async function (req, res) {
       hasError: true,
       message: "Create a account to start creating a post!",
     };
-    
+
     return res.redirect("/signup");
   }
+
+  //req.csrfToken() will generate a token which will be stored by the csurf package
+  //for one request, response cycle
+
+  const csrfToken = req.csrfToken();
+
   const authors = await db.getDb().collection("authors").find().toArray();
-               
-  res.render("create-post", { authors: authors });
+
+  res.render("create-post", { authors: authors, csrfToken: csrfToken });
 });
 
 //signup route
 
 router.get("/signup", function (req, res) {
+  const csrfToken = req.csrfToken();
   if (res.locals.isAuth) {
     req.session.alreadyLoggedIn = {
       message: "You need to logout first to signup as a new user!",
@@ -90,11 +94,13 @@ router.get("/signup", function (req, res) {
 
   req.session.inputData = null;
 
-  res.render("signup", { inputData: sessionInputData });
+  res.render("signup", { inputData: sessionInputData, csrfToken:csrfToken });
 });
 
 //login get route
 router.get("/login", async function (req, res, next) {
+  const csrfToken=req.csrfToken();
+
   if (res.locals.isAuth) {
     req.session.alreadyLoggedIn = {
       message: "You need to logout first to login as a new user!",
@@ -114,14 +120,13 @@ router.get("/login", async function (req, res, next) {
   }
 
   req.session.inputData = null;
-  res.render("login", { inputData: sessionInputData });
+  res.render("login", { inputData: sessionInputData, csrfToken:csrfToken });
 });
 
 // rendering analytics page
 
 router.get("/analytics", async function (req, res, next) {
   if (!res.locals.isAuth) {
-                   ;
     return res.status(401).render("401");
   }
 
@@ -131,10 +136,8 @@ router.get("/analytics", async function (req, res, next) {
     .findOne({ _id: req.session.user.id });
 
   if (!user.isAdmin || !user) {
-                     ;
     return res.status(403).render("403");
   }
-                     ;
   res.render("admin/analytics");
 });
 

@@ -45,7 +45,6 @@ ol {
   transition: 0.4s;
 }
 
-
 .btn:hover,
 .btn:active {
   background-color: rgb(113, 0, 128);
@@ -68,11 +67,14 @@ ol {
 /* Site-wide content / elements */
 
 #main-header {
+  position: sticky;
+  top: 0;
   padding: 2rem 10%;
   background-color: rgb(70, 0, 128);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 8vh;
 }
 
 #logo a {
@@ -117,7 +119,51 @@ ol {
   font-size: 1.2rem;
 }
 
-main#errorpage-main{
+main#errorpage-main {
   margin-top: calc(100vh - 75vh);
   text-align: center;
 }
+
+#aside div{
+  width: 2rem;
+  height: 0.28rem;
+  background-color: white;
+  margin: 0.2rem;
+  border-radius: 0.25rem;
+}
+#aside{
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+}
+
+@media(max-width:48rem){
+ 
+  #main-header nav{
+    display: none;
+  }
+
+  #aside{
+    display: flex;
+  }
+
+  #main-header nav.open{
+    display: block;
+    position: fixed;
+    top: 12vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(70, 0, 128);
+  }
+  #main-header nav.open .nav-items{
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+}
+
