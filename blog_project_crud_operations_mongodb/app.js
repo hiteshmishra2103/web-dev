@@ -62,6 +62,13 @@ app.use(
 
 app.use(csrf());
 
+//adding custom csrf token middleware so that we don't have to pass csrf token
+//to every file manually
+app.use(function (req, res, next) {
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
 //middleware to provide isAdmin and isAuth values to all templates
 app.use(async function (req, res, next) {
   const user = req.session.user;
@@ -82,6 +89,7 @@ app.use(async function (req, res, next) {
 
   next();
 });
+
 
 app.use(blogRoutes);
 
