@@ -4,6 +4,8 @@ const multer = require("multer");
 
 const bcrypt = require("bcryptjs");
 
+const app = express();
+
 //multer.diskStorage() creates a new storage object as expected by multer
 const storageConfig = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +26,8 @@ const { restart } = require("nodemon");
 const ObjectId = mongodb.ObjectId;
 
 const router = express.Router();
+
+
 
 router.get("/", function (req, res) {
   res.redirect("/posts");
@@ -59,20 +63,14 @@ router.get("/new-post", async function (req, res) {
     return res.redirect("/signup");
   }
 
-  //req.csrfToken() will generate a token which will be stored by the csurf package
-  //for one request, response cycle
-
-  const csrfToken = req.csrfToken();
-
   const authors = await db.getDb().collection("authors").find().toArray();
 
-  res.render("create-post", { authors: authors, csrfToken: csrfToken });
+  res.render("create-post", { authors: authors });
 });
 
 //signup route
 
 router.get("/signup", function (req, res) {
-  const csrfToken = req.csrfToken();
   if (res.locals.isAuth) {
     req.session.alreadyLoggedIn = {
       message: "You need to logout first to signup as a new user!",
@@ -94,13 +92,11 @@ router.get("/signup", function (req, res) {
 
   req.session.inputData = null;
 
-  res.render("signup", { inputData: sessionInputData, csrfToken:csrfToken });
+  res.render("signup", { inputData: sessionInputData });
 });
 
 //login get route
 router.get("/login", async function (req, res, next) {
-  const csrfToken=req.csrfToken();
-
   if (res.locals.isAuth) {
     req.session.alreadyLoggedIn = {
       message: "You need to logout first to login as a new user!",
@@ -120,7 +116,7 @@ router.get("/login", async function (req, res, next) {
   }
 
   req.session.inputData = null;
-  res.render("login", { inputData: sessionInputData, csrfToken:csrfToken });
+  res.render("login", { inputData: sessionInputData });
 });
 
 // rendering analytics page
