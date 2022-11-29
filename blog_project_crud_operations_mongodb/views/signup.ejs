@@ -11,8 +11,7 @@
     <%}%>
     <h1>Signup</h1>
     <form action="/signup" method="POST">
-      <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf" />
-      <div class="form-control">
+
         <label for="email">Email</label>
         <input type="email" id="email" name="email" value="<%= inputData.email %>" required>
       </div>

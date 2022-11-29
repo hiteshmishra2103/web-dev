@@ -2,9 +2,10 @@ const express = require("express");
 const mongodb = require("mongodb");
 const multer = require("multer");
 
+
+
 const bcrypt = require("bcryptjs");
 
-const app = express();
 
 //multer.diskStorage() creates a new storage object as expected by multer
 const storageConfig = multer.diskStorage({
