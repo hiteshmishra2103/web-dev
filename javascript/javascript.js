@@ -328,22 +328,320 @@
 // createBooking('k2wk','3');
 // createBooking('k2wk',3,444);
 
-const flight = "lh232";
-const king = {
-  name: "Singh is King",
-  passport: 1212121,
-};
-const checkIn=(flightNum,passenger)=>{
-  flightNum='lh344',
-  passenger.name='Mr.'+passenger.name;
-  if(passenger.passport===1212121){
-    alert("Checked in!");
+// const flight = "lh232";
+// const king = {
+//   name: "Singh is King",
+//   passport: 1212121,
+// };
+// const checkIn=(flightNum,passenger)=>{
+//   flightNum='lh344',
+//   passenger.name='Mr.'+passenger.name;
+//   if(passenger.passport===1212121){
+//     alert("Checked in!");
+//   }
+//   else{
+//     alert("Wrong passport!");
+//   }
+// }
+
+// checkIn(flight,king);
+// console.log(flight);
+// console.log(king);
+
+// const oneWord=function(str){
+//   return str.replace(/ /g, "").toLowerCase();
+// }
+
+// const upperFirstWord=function(str){
+//   const [first,...others]=str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// }
+
+// //higher order function
+// const transformer=function(str,fn){
+// console.log(`Original String: ${str}`);
+// console.log(`Transformed String: ${fn(str)}`);
+
+// console.log(`Transformed by: ${fn.name} function`);
+// };
+
+// transformer("Javascript is best!", upperFirstWord);
+// transformer("Javascript is best!", oneWord);
+
+// const greet=(greeting)=>{
+//   return function(name){
+//     console.log(`${greeting} ${name}`)
+//   };
+// };
+
+// const greeterHey=greet('Hey');
+// greeterHey('Jonas');
+// greeterHey('King');
+
+// greet('Hey')('Queen!');
+
+// //above function using arrow functions
+// const greetArr=greeting=>name=>console.log(`${greeting} ${name}`);
+// greetArr("hello")("albert!");
+
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iataCode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+
+// lufthansa.book(239, "Steve Smith");
+// lufthansa.book(44, "Mitchell Stark");
+
+// //call method
+
+// const euroWings = {
+//   airline: "EuroWings",
+//   iataCode: "EW",
+//   bookings: [],
+// };
+
+// const book = lufthansa.book;
+
+// book.call(euroWings, 23, "Sarah");
+// book.call(lufthansa, 23, "singham");
+// console.log(euroWings);
+
+// const swiss = {
+//   airline: "Swiss Air Lines",
+//   iataCode: "LX",
+//   bookings: [],
+// };
+
+// book.call(swiss, 454, "Mary");
+// console.log(swiss);
+
+// //apply method: It takes an array of arguments instead of list of arguments
+
+// const flightData = [583, "George Cooper"];
+// book.apply(swiss, flightData);
+// console.log(swiss);
+
+// book.call(swiss, ...flightData);
+
+// //bind method
+// //book.call(euroWings, 23, "Sarah");
+// const bookEW = book.bind(euroWings); //this will not call the book function instead it will return
+// //a new function where this keyword will be set to EuroWings
+
+// const bookLH = book.bind(lufthansa);
+// const bookLX = book.bind(swiss);
+
+// bookEW(23, "Steven Williams");
+
+// const bookEW23 = book.bind(euroWings, 23); //Here we have applied a part of arguments of the original function, this is known as partial application
+// bookEW23("Hitesh Mishra");
+
+// //with event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(this.planes);
+// };
+
+// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// //Partial Application
+
+// const addTax=(rate, value)=>value+value*rate;
+
+// console.log(addTax(0.1,200));
+
+// const addVAT=addTax.bind(null, 0.23);
+// // addVAT=value=>value+value*23;
+
+// console.log(addVAT(100));
+
+// const addTaxRate=function(rate){
+//   return function(value){
+//     return value+value*rate;
+//   }
+// }
+
+// const addVAT2=addTaxRate(0.23);
+// console.log(addVAT2(100));
+
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: ["0:Javascript", "1: Python", "2: Rust", "3: C++"],
+//   //This generates [0,0,0,0]. More in the next section 😁
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     //Get answer
+
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+//       )
+//     );
+//     console.log(answer);
+
+//     //register answer
+//     typeof answer==='number' && answer<this.answers.length && this.answers[answer]++;
+//   },
+//   displayResults(type ='array'){
+//     if(type==='array'){
+//       console.log(this.answers);
+//     }else if(type==='string'){
+//       console.log(`Poll results are ${this.answers.join(', ')}`);
+//     }
+//   }
+// };
+
+// document.querySelector('.poll').addEventListener("click", poll.registerNewAnswer.bind(poll));
+// poll.displayResults.call({answers:[5,2,3]}, 'string');
+// poll.displayResults.call({answers:[23,4,4,3]});
+
+// const runOnce=function(){
+//   console.log('This will never run again!');
+// }
+
+// runOnce();
+
+// //immediately invoked function expressions
+
+// (function(){
+//   console.log("This will never run again!");
+// })();
+
+// (()=>console.log("this will never run again!"))()
+
+//closures
+
+// const secureBooking= function(){
+//   let passengerCount=0;
+
+//   return function(){
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   }
+// }
+
+// const booker=secureBooking();
+
+// booker();
+// booker();
+// booker();
+
+//closure examples
+
+//--first example---
+
+// let f;
+// const g = function () {
+//   let a = 23;
+//   f = function () {
+//     a = a * 2;
+//     console.log(a);
+//   };
+// };
+// const h = function () {
+//   let b = 223;
+//   f = function () {
+//     b = b * 2;
+//     console.log(b);
+//   };
+// };
+// g();
+// f();
+// console.dir(f);
+// h();
+// f();
+
+// //---second example---
+
+// const boardPassengers = function (n, wait) {
+//   const perGroup = n / 3;
+
+//   setTimeout(function () {
+//     console.log(`We are now boarding all ${n} passengers.`);
+//     console.log(`There are 3 groups, each with ${perGroup} passengers`);
+//   }, wait*1000);
+
+//   console.log(`We will start boarding in ${wait} seconds!`);
+// };
+
+// boardPassengers(180,1);
+
+// (function () {
+//   const header = document.querySelector("h1");
+//   header.style.color = "red";
+
+//   document.querySelector("body").addEventListener("click", function () {
+//     header.style.color = "blue";
+//   });
+// })();
+
+//-------------------------arrays in depth-----------------------------------------//
+
+//slice
+let arr = ["a", "b", "c", "d", "e"];
+
+console.log(arr.slice(2, -1));
+console.log(arr.slice());
+
+//splice method
+console.log(arr.splice(2));
+console.log(arr.splice(1, 2));
+console.log(arr.splice(1, 2, 4));
+console.log(arr);
+
+//Reverse
+
+arr = ["a", "b", "c", "d", "e"];
+const arr2 = ["j", "i", "h", "g", "f"];
+console.log(arr2.reverse());
+
+//concat() method
+
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+//JOIN
+
+console.log(letters.join(""));
+console.log(letters.join("-"));
+
+//at method
+
+const atarray = ["a", "b", "c"];
+
+console.log(atarray[0]);
+console.log(atarray.at(0));
+
+//getting last array element traditionally before ES6
+
+console.log(atarray[atarray.length - 1]);
+console.log(atarray.slice(-1)[0]);
+
+//getting last array element using 'at method'
+
+console.log(atarray.at(-1));
+
+//for each loop
+
+const movements = [200.45, -400, 300, -650, -130, 70, 1300];
+
+for(const movement of movements){
+  if(movement>0){
+    console.log(`You deposited ${movement}`);
   }
   else{
-    alert("Wrong passport!");
+      console.log(`You withdrew ${Math.abs(movement)}`);
   }
 }
 
-checkIn(flight,king);
-console.log(flight);
-console.log(king);
