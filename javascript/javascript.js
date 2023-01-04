@@ -585,63 +585,95 @@
 //   });
 // })();
 
-//-------------------------arrays in depth-----------------------------------------//
+// -------------------------arrays in depth-----------------------------------------//
 
-//slice
-let arr = ["a", "b", "c", "d", "e"];
+// //slice
+// let arr = ["a", "b", "c", "d", "e"];
 
-console.log(arr.slice(2, -1));
-console.log(arr.slice());
+// console.log(arr.slice(2, -1));
+// console.log(arr.slice());
 
-//splice method
-console.log(arr.splice(2));
-console.log(arr.splice(1, 2));
-console.log(arr.splice(1, 2, 4));
-console.log(arr);
+// //splice method
+// console.log(arr.splice(2));
+// console.log(arr.splice(1, 2));
+// console.log(arr.splice(1, 2, 4));
+// console.log(arr);
 
-//Reverse
+// //Reverse
 
-arr = ["a", "b", "c", "d", "e"];
-const arr2 = ["j", "i", "h", "g", "f"];
-console.log(arr2.reverse());
+// arr = ["a", "b", "c", "d", "e"];
+// const arr2 = ["j", "i", "h", "g", "f"];
+// console.log(arr2.reverse());
 
-//concat() method
+// //concat() method
 
-const letters = arr.concat(arr2);
-console.log(letters);
-console.log([...arr, ...arr2]);
+// const letters = arr.concat(arr2);
+// console.log(letters);
+// console.log([...arr, ...arr2]);
 
-//JOIN
+// //JOIN
 
-console.log(letters.join(""));
-console.log(letters.join("-"));
+// console.log(letters.join(""));
+// console.log(letters.join("-"));
 
-//at method
+// //at method
 
-const atarray = ["a", "b", "c"];
+// const atarray = ["a", "b", "c"];
 
-console.log(atarray[0]);
-console.log(atarray.at(0));
+// console.log(atarray[0]);
+// console.log(atarray.at(0));
 
-//getting last array element traditionally before ES6
+// //getting last array element traditionally before ES6
 
-console.log(atarray[atarray.length - 1]);
-console.log(atarray.slice(-1)[0]);
+// console.log(atarray[atarray.length - 1]);
+// console.log(atarray.slice(-1)[0]);
 
-//getting last array element using 'at method'
+// //getting last array element using 'at method'
 
-console.log(atarray.at(-1));
+// console.log(atarray.at(-1));
 
-//for each loop
+// //for each loop
 
-const movements = [200.45, -400, 300, -650, -130, 70, 1300];
+// const movements = [200.45, -400, 300, -650, -130, 70, 1300];
 
-for(const movement of movements){
-  if(movement>0){
-    console.log(`You deposited ${movement}`);
-  }
-  else{
-      console.log(`You withdrew ${Math.abs(movement)}`);
-  }
-}
+// // for(const movement of movements){
+//   for(const [index,movement] of movements.entries()){
+
+// if(movement>0){
+//     console.log(`Movement ${index+1}: You deposited ${movement}`);
+//   }
+//   else{
+//       console.log(`Movement ${index+1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// }
+
+// console.log('------------------------FOR EACH-----------------');
+
+// movements.forEach(function(movement, index,arr){
+//   if(movement>0){
+//     console.log(`Movement ${index+1}: You deposited ${movement}`);
+// }
+// else{
+//       console.log(`Movement ${index+1}: You withdrew ${Math.abs(movement)}`);
+//   };
+// });
+
+//forEach loop (looping maps using forEach)
+const currencies = new Map([
+  ["INR", "INDIAN NATIONAL RUPEE"],
+  ["USD", "UNITED STATES DOLLAR"],
+  ["GBP", "POUND STERLING"],
+]);
+
+currencies.forEach(function(value,key, map){
+  console.log(`${key}: ${value}`);
+
+})
+
+//forEach loop (looping sets using forEach)
+
+const currenciesUnique=new Set(['INR', 'USD', 'GBP', 'USD', 'EUR']);
+
+console.log(currenciesUnique)
+
 
