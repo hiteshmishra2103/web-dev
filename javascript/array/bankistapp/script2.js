@@ -10,7 +10,7 @@
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  owner: "Hitesh Mishra",
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
   pin: 1111,
@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)} INR</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)} INR`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)} INR`;
 
   const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)} INR`;
 
   const interest = acc.movements
     .filter((mov) => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)} INR`;
 };
 
 const createUsernames = function (accs) {
@@ -206,7 +206,7 @@ btnTransfer.addEventListener("click", function (e) {
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (
     amount > 0 &&
@@ -273,18 +273,110 @@ console.log(Number.parseInt(" 2.5px"));
 //checking if a value is not a number
 
 console.log(Number.isNaN(20));
-console.log(Number.isNaN('20'));
-console.log(Number.isNaN(+'20x'))
-console.log(Number.isNaN(20/0));//it will return false because 'Infinity' is    
+console.log(Number.isNaN("20"));
+console.log(Number.isNaN(+"20x"));
+console.log(Number.isNaN(20 / 0)); //it will return false because 'Infinity' is
 //considered a number in javascript
 
-
 //Number.isFinite() checks if a value is number or not and a number is finite or not
-console.log(Number.isFinite(20));//It will return true
-console.log(Number.isFinite(20/0));//it will return false because infinity is not finite
+console.log(Number.isFinite(20)); //It will return true
+console.log(Number.isFinite(20 / 0)); //it will return false because infinity is not finite
 console.log(Number.isFinite(20.3));
 
 //Checking if a number is integer or not
 console.log(Number.isInteger(20));
-console.log(Number.isInteger(20.2));//it will return false because this value is float
-console.log(Number.isInteger(20/0));//
+console.log(Number.isInteger(20.2)); //it will return false because this value is float
+console.log(Number.isInteger(20 / 0)); //it will return false because infinity is not integer
+
+console.log(Math.sqrt(25));
+
+console.log(Math.max(2, 3, 445, 6, 89));
+console.log(Math.max(2, 3, "445", 6, 89)); //It will do type coercion and return 445 as max value
+console.log(Math.max(2, 3, "445px", 6, 89));
+
+console.log(Math.min(2, 5, 6, 7, 8));
+console.log(Math.min("2", 5, 6, 7, 8));
+
+console.log(Math.PI * Number.parseFloat("10px") ** 2);
+
+console.log(Math.floor(Math.random() * 6) + 1);
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+console.log(randomInt(10, 20));
+
+//Rounding integers
+
+console.log(Math.trunc(2.4));
+console.log(Math.round(2.5)); //It will round off to nearest integer
+
+console.log(Math.ceil(2.1));
+console.log(Math.ceil(2.9));
+
+console.log(Math.floor("2.1"));
+console.log(Math.floor(2.99));
+console.log(Math.floor("-2.99"));
+
+console.log(Math.trunc(-2.9));
+console.log(Math.trunc("-2.9"));
+
+//rounding decimals
+//toFixed() returns a string, so to convert it into a number we used "+"
+console.log(+(2.7).toFixed(0));
+console.log(+(2.7).toFixed(2));
+console.log(+(2.3434).toFixed(5));
+
+//remainder operator
+
+console.log(5 % 2);
+console.log(5 / 2);
+console.log(8 % 3);
+
+const isEven = (n) => n % 2 == 0;
+
+console.log(isEven(2));
+console.log(isEven(9));
+
+labelBalance.addEventListener("click", function () {
+  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+    if (i % 2 === 0) {
+      row.style.backgroundColor = "orangered";
+    }
+  });   
+});
+
+//Numeric seperators
+
+const diameter=187_000_000_99;
+console.log(diameter);
+
+const Price=232_343_4;
+
+console.log(Price);
+
+console.log(Math.PI);
+
+//BigInt
+console.log(2**53-1);
+console.log(Number.MAX_SAFE_INTEGER)
+console.log(2332323232332434566435423453453452345n);
+
+console.log(BigInt(2332323232332434566435423453453452345));
+
+const num=23;
+const huge=2332323232332434566435423453453452345n;
+
+console.log(100n+1000n);
+
+console.log(huge*BigInt(num));
+
+// console.log(Math.sqrt(25n));
+// console.log(Math.floor(BigInt(233.33)))
+//exceptions for bigint
+console.log(20n===20);
+console.log(20n==20);
+console.log(20n==='20');
+
+console.log(huge+'  This number is really big!');
+
+console.log(11n/3n);
