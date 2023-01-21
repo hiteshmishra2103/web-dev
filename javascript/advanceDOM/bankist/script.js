@@ -271,7 +271,6 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 
 //sticky navigation
 
-
 //Using scroll event for sticky navigation causes👉 poor performance,⭐ you can use it but it is not
 //a good practice, Below is the code for doing so👇
 
@@ -288,7 +287,47 @@ nav.addEventListener("mouseout", handleHover.bind(1));
 //   }
 // });
 
+////-------------------------Sticky navigation using intersection observer api--------------------////
 
+//-------------------How Intersection observer api works-------------------👇👇//
+
+// const obsCallback = function (entries, observer) {
+//   entries.forEach((entry) => {
+//     console.log(entry);
+//   });
+// };
+
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.1],
+// };
+
+
+const navHeight=nav.getBoundingClientRect().height;
+
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) {
+    nav.classList.add("sticky");
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin:`-${navHeight}px`
+});
+
+headerObserver.observe(header);
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+// observer.observe(section1);
 
 // document.querySelector(".nav__links").addEventListener("click", function (e) {
 //   this.style.backgroundColor = randomColor();
