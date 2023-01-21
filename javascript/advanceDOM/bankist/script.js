@@ -217,7 +217,7 @@ document
 
       document.querySelector(id).scrollIntoView({ behavior: "smooth" });
     }
-  }, false);
+  });
 
 // tabs.forEach((t) => t.addEventListener("click", () => console.log("tab")));//bad practice
 
