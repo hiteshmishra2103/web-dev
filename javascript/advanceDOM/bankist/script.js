@@ -390,17 +390,16 @@ const dotContainer = document.querySelector(".dots");
 
 const slider = document.querySelector(".slider");
 
-slider.style.transform = "scale(1)";
+// slider.style.transform = "scale(1)";
 
-slider.style.overflow = "visible";
+// slider.style.overflow = "visible";
 
 //Creating slider navigation dots
 const createDots = function () {
   slides.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
       "beforeend",
-      `<button class="dots_dot" data-slide="${i}">
-    
+      `<button class="dots__dot" data-slide="${i}">
     </button>`
     );
   });
@@ -424,7 +423,6 @@ const nextSlide = function () {
   } else {
     currSlide++;
   }
-
   goToSlide(currSlide);
 };
 
@@ -449,6 +447,13 @@ document.addEventListener("keydown", function (e) {
   console.log(e);
   if (e.key === "ArrowLeft") prevSlide();
   e.key === "ArrowRight" && nextSlide();
+});
+
+dotContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("dots__dot")) {
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+  }
 });
 
 // 0%,100%,300%
