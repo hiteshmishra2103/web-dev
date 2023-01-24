@@ -395,6 +395,8 @@ const slider = document.querySelector(".slider");
 // slider.style.overflow = "visible";
 
 //Creating slider navigation dots
+
+//functions
 const createDots = function () {
   slides.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
@@ -405,15 +407,21 @@ const createDots = function () {
   });
 };
 
-createDots();
+const activateDot = function (slide) {
+  document
+    .querySelectorAll(".dots__dot")
+    .forEach((dot) => dot.classList.remove("dots__dot--active"));
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add("dots__dot--active");
+};
 
 const goToSlide = function (slide) {
   slides.forEach((s, i) => {
     s.style.transform = `translateX(${100 * (i - slide)}%)`;
   });
 };
-
-goToSlide(0);
 
 //Next Slide
 
@@ -436,6 +444,14 @@ const prevSlide = function () {
   goToSlide(currSlide);
 };
 
+const init = function () {
+  goToSlide(0);
+  createDots();
+  activateDot(0);
+};
+
+init();
+
 btnRight.addEventListener("click", nextSlide);
 btnLeft.addEventListener("click", prevSlide);
 
@@ -453,6 +469,7 @@ dotContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("dots__dot")) {
     const { slide } = e.target.dataset;
     goToSlide(slide);
+    activateDot(slide);
   }
 });
 
