@@ -366,52 +366,127 @@
 // jay.introduce();
 // jay.calcAge();
 
-class Account {
-  //1) Public Fields
-  locale = navigator.language;
+// class Account {
+//   //1) Public Fields
+//   locale = navigator.language;
 
-  //2) Private fields
-  #movements = [];
-  #pin;
+//   //2) Private fields
+//   #movements = [];
+//   #pin;
 
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    this.#pin = pin;
-    // this._movements = [];
-    // this.locale = navigator.language;
-    console.log(`Thanks for opening an account, ${this.owner}`);
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.#pin = pin;
+//     // this._movements = [];
+//     // this.locale = navigator.language;
+//     console.log(`Thanks for opening an account, ${this.owner}`);
+//   }
+
+//   deposit(val) {
+//     this.#movements.push(val);
+//     return this;
+//   }
+
+//   withdraw(val) {
+//     // this.movements.push(-val);
+//     this.deposit(-val);
+//     return this;
+//   }
+
+//   getMovements() {
+//     return this.#movements;
+//   }
+
+//   //Private method 👇
+//   // #requestLoan(val)
+//   _requestLoan(val) {
+//     this.deposit(val);
+//     console.log(`Loan approved!`);
+//     return this;
+//   }
+// }
+
+// const acc1 = new Account("king", "rupees", 1222);
+
+// acc1.deposit(250);
+// acc1.withdraw(140);
+// acc1._requestLoan(1000);
+// // acc1.approveLoan();
+
+// console.log(acc1.getMovements());
+// // console.log()
+// console.log(acc1);
+// // console.log(acc1.#pin);//It will throw an error because we are trying to access protected fields
+
+// acc1.deposit(300).deposit(900)._requestLoan(232).withdraw(23);
+
+// console.log(acc1.getMovements())
+
+const car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+class carcl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
   }
 
-  deposit(val) {
-    this.#movements.push(val);
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
   }
 
-  withdraw(val) {
-    // this.movements.push(-val);
-    this.deposit(-val);
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
   }
 
-  getMovements() {
-    return this.#movements;
+  get speedUs() {
+    return this.speed / 1.6;
   }
 
-  //Private method 👇
-  // #requestLoan(val)
-   _requestLoan(val){
-    this.deposit(val);
-    console.log(`Loan approved!`);
+  set speedUs(speed) {
+    this.speed = speed * 1.6;
+    return this;
   }
 }
 
-const acc1 = new Account("king", "rupees", 1222);
+class EVcl extends carcl {
+  //Private fields
+  #charge;
 
-acc1.deposit(250);
-acc1.withdraw(140);
-acc1._requestLoan(1000);
-// acc1.approveLoan();
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
 
-console.log(acc1.getMovements());
-// console.log()
-console.log(acc1);
-console.log(acc1.#pin);//It will throw an error because we are trying to access protected fields
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    this.#charge--;
+
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }.`
+    );
+    return this;
+  }
+}
+
+const rivian = new EVcl("Rivian", 120, 40);
+console.log(rivian);
+
+rivian.accelerate().accelerate().brake().chargeBattery(50).accelerate();
+
+console.log(rivian.speedUs);
+console.log();
