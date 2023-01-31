@@ -1,0 +1,155 @@
+
+
+
+body
+{
+	margin: 0;
+	
+}
+img
+{
+	width: 100%;
+}
+
+
+
+.sm{
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
+
+.subheader{
+	float: left;
+	width: 100%;
+	
+}
+
+
+.subheader_c1{
+	float: right;
+	width: 50%;
+	
+	background-color: #373737;
+	color: white;
+}
+
+
+.logo{
+	width: 30%;
+	
+}
+
+.header{
+	float: left;
+	width: 100%;
+	background-color: #DC2E27;
+}
+
+.header_c1{
+	float: left;
+	width: 80%;
+	margin-left: 15%;
+	padding: 20px;
+	color: white;
+	font-size: 18px;
+}
+
+
+.salient-featurs{
+	float: left;
+	width: 100%;
+	background-color: #373737;
+	color: white;
+	padding-bottom: 50px;
+
+}
+
+.salientsm{
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.salient_c1{
+	float: left;
+	width: 33.1%;
+	color: white;
+	text-align: left;
+	font-size: 20px;
+	padding-top: 25px;
+	
+
+}
+
+hr.new2 {
+  border-top: 1px dashed white;
+}
+
+
+
+@media all and (max-width : 480px)
+{
+  .salient-featurs  .salient_c1{width: 100%;}
+}
+
+
+.tab {
+  float: left;
+  width: 50%;
+  
+  margin-left: 34%;
+  margin-top: -1%;
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 3%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  width: 80%;
+  
+  border-top: none;
+  margin-left: 10%;
+  font-size: 18px;
+
+}
+
+.principal-img{
+	float: left;
+	width: 20%;
+	
+}
+
+@media all and (max-width : 480px)
+{
+ .tabcontent{width: 100%;}
+ .tab button{width: 100%;} 
+}

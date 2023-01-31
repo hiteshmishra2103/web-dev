@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> </title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="subheader">
+      <div class="sm">
+        <div class="subheader_c1">
+          Home | Contact Us
+        </div>
+        <div class="logo">
+          <img src="img\logo.png" />
+        </div>
+      </div>
+    </div>
+
+    <div class="header">
+      <div class="sm">
+        <div class="header_c1">
+          ABOUT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ADMISSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ACADEMICS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          PLACEMENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          INTERNTONAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="img\student.jpg" />
+    </div>
+
+    <div class="salient-featurs">
+      <div class="salientsm">
+        <h2>SALIENT FEATURS</h2>
+        <div class="salient_c1">
+          <p>Hindi & English Medium</p>
+          <hr class="new2" />
+          <p>Big Play Ground</p>
+        </div>
+        <div class="salient_c1">
+          <p>Yoga Classes</p>
+          <hr class="new2" />
+          <p>Excellent board results</p>
+        </div>
+        <div class="salient_c1">
+          <p>Available of CCTV</p>
+          <hr class="new2" />
+          <p>Wellequipped physics lab</p>
+        </div>
+        <div class="salient_c1">
+          <hr class="new2" />
+          <p>Science</p>
+          <hr class="new2" />
+          <p>Wellequipped Chemistry lab</p>
+        </div>
+        <div class="salient_c1">
+          <hr class="new2" />
+          <p>Art</p>
+          <hr class="new2" />
+          <p>Wellequipped Biology lab</p>
+        </div>
+        <div class="salient_c1">
+          <hr class="new2" />
+          <p>Commerce</p>
+          <hr class="new2" />
+          <p>Wellequipped Computer lab</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'London')">
+        Principal Message
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Paris')">
+        About School
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+    </div>
+
+    <div id="London" class="tabcontent">
+      <h3></h3>
+      <div class="principal-img">
+        <img src="img\principal.png" style="width: 200px;" />
+      </div>
+      <h2>Best Regards Vijay Badoni</h2>
+
+      <p>
+        We1123 recognize the importance of homely school co-operation in the
+        progress of students and provide ourselves on truly collaboration
+        understanding among students, their parents and the teachers. We believe
+        in Physical, Mental, Intellectual, social, moral and spiritual
+        development of the child.
+      </p>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+      <h3>About School</h3>
+      <p>
+        Pushpa Vadhera Saraswati Vidya Mandir Inter College Dhalwala Rishikesh
+        was established in 13 April 1998. This school is affiliated with
+        uttarakhand Board of Education.This school was upto class 8th in
+        starting in 2000. It got affiliation for class 10th in the year 2001 and
+        for class 12th in the year 2006.This school has prepared many talented
+        students holding the reputed post as an I.E.R.S. Aadarsh Bharti working
+        as a doctor. Diwakar Vyas,Vipin Rana and Abhinav Pundir working as an
+        engineer. our school puts more emphasis on quality education and all
+        over the development of the student. It is our priority to give
+        importance on moral education of the student so that he may use his
+        talent in a right way.
+      </p>
+    </div>
+
+    <div id="Tokyo" class="tabcontent">
+      <h3>Tokyo</h3>
+      <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+  </body>
+</html>
