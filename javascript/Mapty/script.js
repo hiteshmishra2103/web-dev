@@ -1,9 +1,33 @@
-'use strict';
+"use strict"; //to enable strict mode
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const form = document.querySelector(".form");
+const containerWorkouts = document.querySelector(".workouts");
+const inputType = document.querySelector(".form__input--type");
+let inputDistance = document.querySelector(".form__input--distance");
+let inputDuration = document.querySelector(".form__input--duration");
+let inputCadence = document.querySelector(".form__input--cadence");
+let inputElevation = document.querySelector(".form__input--elevation");
+const formBtn = document.querySelector(".form__btn");
+let map, mapEvent;
 
 class Workout {
   date = new Date();
-  id = (Date.now() + '').slice(-10);
-  clicks = 0;
+  id = (Date.now() + "").slice(-10);
 
   constructor(coords, distance, duration) {
     // this.date = ...
@@ -323,3 +347,7 @@ class App {
 }
 
 const app = new App();
+// app._getPosition();
+
+console.log(navigator.geolocation);
+// Using the geolocation API
