@@ -235,3 +235,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
 // createImage("img/card.jpeg").then((img) => console.log("image loaded!"));
 
+// const whereAmi = async function (country) {
+//   await fetch(`https://restcountries.com/v3.1/name/${country}`);
+
+// };
