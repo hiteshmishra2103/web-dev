@@ -13,15 +13,11 @@ import recipeView from "./views/recipeView.js";
 
 // console.log(icons)
 
+//The recipe container where the recipes are shown to the user(right-hand side section)
+
 const recipeContainer = document.querySelector(".recipe");
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
+//Below is the link to the address of the api used for fetching data
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -45,7 +41,6 @@ const controlRecipes = async function () {
     //1) Loading the recipe
     await model.loadRecipe(id); //It will give us access to the state.recipe object
 
-
     //2) Rendering the loaded recipe and setting the values of respective fields using the recipe object
 
     recipeView.render(model.state.recipe);
@@ -54,12 +49,10 @@ const controlRecipes = async function () {
   }
 };
 
-//adding event listener for hashchange and load event, so that the recipe will load whenever the
-//recipe id changes or a new page loads with recipe id
+//Implementing the publisher-subscriber pattern
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
 
-//A concise way to use event listeners (use arrays of event and then apply loop over them)
-
-["hashchange", "load"].forEach((e) => window.addEventListener(e, controlRecipes));
-
-// window.addEventListener("hashchange", showRecipe);
-// window.addEventListener("load", showRecipe);
+//Calling the init() to call the addHandlerRender function  
+init();
