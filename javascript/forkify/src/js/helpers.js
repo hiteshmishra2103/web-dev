@@ -16,6 +16,9 @@ const timeout = function (s) {
 
 export const getJSON = async function (url) {
   try {
+    //If the fetching data takes more than 10s then timeout() will execute and throw the request too
+    //long message and reject the promise
+    
     const res = await Promise.race([fetch(url), timeout(TIMEOUt_SEC)]);
     // const res = await fetch(`${url}`);
 

@@ -1,3 +1,6 @@
+//Importing View.js
+import View from "./View";
+
 //importing icons.svg file so that parcel could load the image also
 //icons is the link the of the icons.svg file
 
@@ -11,79 +14,14 @@ import { mark } from "regenerator-runtime";
 
 console.log(Fraction);
 
-class RecipeView {
+class RecipeView extends View {
   //recipe container element👇
-  #parentElement = document.querySelector(".recipe");
-
-  //data field will store the data of recipes fetched by model.js
-  #data;
+  _parentElement = document.querySelector(".recipe");
 
   //errorMessage is the default error message, when the recipe is not found
-  #errorMessage = "We could not find that recipe. Please try another one!";
-  
-  #message = "";
+  _errorMessage = "We could not find that recipe. Please try another one!";
 
-  render(data) {
-    this.#data = data;
-    const markup = this.#generateMarkup();
-
-    //Clearing the content from recipe container
-    this.#clear();
-
-    //Inserting the html markup on our html file
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
-
-  //Private method for clearing the content from recipe container before another content come
-  #clear() {
-    this.#parentElement.innerHTML = "";
-  }
-
-  renderSpinner = function () {
-    const markup = `<div class="spinner">
-  <svg>
-    <use href="${icons}#icon-loader"></use>
-  </svg>
-  </div>`;
-
-    //Setting the parent element inner html to none
-    this.#parentElement.innerHTML = "";
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  };
-
-  //If we don't pass any argument to the following function then it will have a default recipe not found
-  //error message
-  renderError(message = this.#errorMessage) {
-    const markup = `<div class="error">
-  <div>
-    <svg>
-      <use href="${icons}#icon-alert-triangle"></use>
-    </svg>
-  </div>
-  <p>${message}</p>
-</div>`;
-
-    //Clearing the parent element
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
-
-  //Below is the function for showing the other messages like success messages👇
-
-  renderMessage(message = this.#message) {
-    const markup = `<div class="message">
-  <div>
-    <svg>
-      <use href="${icons}#icon-smile"></use>
-    </svg>
-  </div>
-  <p>${message}</p>
-</div>`;
-
-    //Clearing the parent element
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
+  _message = "";
 
   addHandlerRender(handler) {
     //adding event listener for hashchange and load event, so that the recipe will load whenever the
@@ -96,14 +34,14 @@ class RecipeView {
     );
   }
 
-  //We are using private method below, but it will be taken care of by babel
-  #generateMarkup() {
+  //We are using protected method below, but it will be taken care of by babel
+  _generateMarkup() {
     return `
     <figure class="recipe__fig">
     
-      <img src="${this.#data.image}" alt="Tomato" clthis.#data__img" />
+      <img src="${this._data.image}" alt="Tomato" clthis._data__img" />
       <h1 class="recipe__title">
-        <span>${this.#data.title}</span>
+        <span>${this._data.title}</span>
       </h1>
     </figure>
     <div class="recipe__details">
@@ -112,7 +50,7 @@ class RecipeView {
           <use href="${icons}#icon-clock"></use>
         </svg>
         <span class="recipe__info-data recipe__info-data--minutes">${
-          this.#data.cookingTime
+          this._data.cookingTime
         }</span>
         <span class="recipe__info-text">minutes</span>
       </div>
@@ -121,7 +59,7 @@ class RecipeView {
           <use href="${icons}#icon-users"></use>
         </svg>
         <span class="recipe__info-data recipe__info-data--people">${
-          this.#data.servings
+          this._data.servings
         }</span>
         <span class="recipe__info-text">servings</span>
         <div class="recipe__info-buttons">
@@ -138,9 +76,6 @@ class RecipeView {
         </div>
       </div>
       <div class="recipe__user-generated">
-        <svg>
-          <use href="${icons}#icon-user"></use>
-        </svg>
       </div>
       <button class="btn--round">
         <svg class="">
@@ -152,7 +87,7 @@ class RecipeView {
       <h2 class="heading--2">Recipe ingredients</h2>
       <ul class="recipe__ingredient-list">
 
-      ${this.#data.ingredients.map(this.#generateMarkupIngredient).join("")}  
+      ${this._data.ingredients.map(this._generateMarkupIngredient).join("")}  
       
         <li class="recipe__ingredient">
           <svg class="recipe__icon">
@@ -171,13 +106,13 @@ class RecipeView {
       <p class="recipe__directions-text">
         This recipe was carefully designed and tested by
         <span class="recipe__publisher">${
-          this.#data.publisher
+          this._data.publisher
         }</span>. Please check out
         directions at their website.
       </p>
       <a
         class="btn--small recipe__btn"
-        href="${this.#data.sourceUrl}"
+        href="${this._data.sourceUrl}"
         target="_blank"
       > 
         <span>Directions</span>
@@ -189,8 +124,8 @@ class RecipeView {
     `;
   }
 
-  //A private method for generating the markup for ingredients
-  #generateMarkupIngredient(ing) {
+  //A protected method for generating the markup for ingredients
+  _generateMarkupIngredient(ing) {
     return `<li class="recipe__ingredient">
     <svg class="recipe__icon">
       <use href="${icons}#icon-check"></use>
@@ -207,7 +142,7 @@ class RecipeView {
 }
 
 //Exporting the object made using RecipeView class in order to avoid exposing the real class and thus
-//avoid any risk of mutating the private data, because the objects made by RecipeView class will not
-//have access to the privated fields of the class
+//avoid any risk of mutating the protected data, because the objects made by RecipeView class will not
+//have access to the protectedd fields of the class
 
 export default new RecipeView();
