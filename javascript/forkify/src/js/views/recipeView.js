@@ -7,12 +7,21 @@ import icons from "url:../../img/icons.svg"; //parcel v2
 //can be used for many other purposes)
 
 import Fraction from "fractional";
+import { mark } from "regenerator-runtime";
 
 console.log(Fraction);
 
 class RecipeView {
+  //recipe container element👇
   #parentElement = document.querySelector(".recipe");
+
+  //data field will store the data of recipes fetched by model.js
   #data;
+
+  //errorMessage is the default error message, when the recipe is not found
+  #errorMessage = "We could not find that recipe. Please try another one!";
+  
+  #message = "";
 
   render(data) {
     this.#data = data;
@@ -42,14 +51,48 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   };
 
+  //If we don't pass any argument to the following function then it will have a default recipe not found
+  //error message
+  renderError(message = this.#errorMessage) {
+    const markup = `<div class="error">
+  <div>
+    <svg>
+      <use href="${icons}#icon-alert-triangle"></use>
+    </svg>
+  </div>
+  <p>${message}</p>
+</div>`;
+
+    //Clearing the parent element
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  //Below is the function for showing the other messages like success messages👇
+
+  renderMessage(message = this.#message) {
+    const markup = `<div class="message">
+  <div>
+    <svg>
+      <use href="${icons}#icon-smile"></use>
+    </svg>
+  </div>
+  <p>${message}</p>
+</div>`;
+
+    //Clearing the parent element
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
   addHandlerRender(handler) {
     //adding event listener for hashchange and load event, so that the recipe will load whenever the
     //recipe id changes or a new page loads with recipe id
 
     //A concise way to use event listeners (use arrays of event and then apply loop over them)
 
-    ["hashchange", "load"].forEach((e) =>
-      window.addEventListener(e, handler)
+    ["hashchange", "load"].forEach((event) =>
+      window.addEventListener(event, handler)
     );
   }
 

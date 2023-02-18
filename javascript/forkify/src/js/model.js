@@ -33,6 +33,14 @@ export const loadRecipe = async function (id) {
 
     console.log(state.recipe);
   } catch (error) {
-    console.error(`${error.message} 😔😔😔`);
+    ////Temporary error handling
+    // console.error(`${error.message} 😔😔😔`);
+
+    //If we get error here then this loadRecipe() promise will not get rejected, therefore in controller.js
+    //we will never enter the catch block in control recipe async function, so in order to catch that error
+    //we are rethrowing this error
+    
+    //Rethrowing the error
+    throw error;
   }
 };

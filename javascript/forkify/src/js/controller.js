@@ -31,10 +31,12 @@ const recipeContainer = document.querySelector(".recipe");
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-    console.log(id);
-
+    
     //Checking if id is empty (guard clause)
     if (!id) return;
+
+    console.log(id);
+    
     //Before loading the recipe the spinner should be rendered
     recipeView.renderSpinner();
 
@@ -42,10 +44,15 @@ const controlRecipes = async function () {
     await model.loadRecipe(id); //It will give us access to the state.recipe object
 
     //2) Rendering the loaded recipe and setting the values of respective fields using the recipe object
-
+    
     recipeView.render(model.state.recipe);
   } catch (error) {
-    alert(error.message);
+    // alert(error.message);
+    //We will not pass the error message here when the recipe with specified id is not found, because
+    //it is the view which should take care of that, to do this we will make a private field error
+    //message which will
+
+    recipeView.renderError();
   }
 };
 
@@ -54,5 +61,5 @@ const init = function () {
   recipeView.addHandlerRender(controlRecipes);
 };
 
-//Calling the init() to call the addHandlerRender function  
+//Calling the init() to call the addHandlerRender function
 init();
