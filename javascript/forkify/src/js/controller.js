@@ -18,13 +18,16 @@ import searchView from "./views/searchView.js";
 //importing the ResultsView file
 import resultsView from "./views/resultsView.js";
 
-//Activating the hot module reloading
-//It will automatically update modules in the browser
-//at runtime without needing a whole page refresh👇
+//Importing paginationView file
+import paginationView from "./views/paginationView.js";
 
-if (module.hot) {
-  module.hot.accept();
-}
+// //Activating the hot module reloading
+// //It will automatically update modules in the browser
+// //at runtime without needing a whole page refresh👇
+
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 //The recipe container where the recipes are shown to the user(right-hand side section)
 
@@ -79,16 +82,38 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     //3) Rendering the results
-    resultsView.render(model.state.search.results);
+    // resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultsPage());
+
+    //We will render the pagination buttons after the recipes are loaded on the page
+
+    //4) Rendering the initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (error) {
     console.log(error);
   }
+};
+
+//function for controlling the pagination, whenever the pagination button will be clicked then
+//the following function will be called👇 and it render the recipes and pagination button acc to
+//the button clicked
+
+const controlPagination = function (goToPage) {
+  //1) Rendering NEW results
+  //render will overwrite the existing content and put new content in that place👇
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  //We will render the pagination buttons after the recipes are loaded on the page
+
+  //2) Rendering the NEW pagination buttons
+  paginationView.render(model.state.search);
 };
 
 //Implementing the publisher-subscriber pattern
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 //Calling the init() to call the addHandlerRender function

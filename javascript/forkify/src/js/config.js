@@ -3,5 +3,5 @@
 //and also for uploading the recipe on the server
 
 export const API_URL = `https://forkify-api.herokuapp.com/api/v2/recipes/`;
-
-export const TIMEOUt_SEC=10;
+export const TIMEOUt_SEC = 10;
+export const RES_PER_PAGE = 10;

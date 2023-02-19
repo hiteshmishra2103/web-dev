@@ -1,7 +1,7 @@
 import { async } from "regenerator-runtime";
 
 //importing the config.js
-import { API_URL } from "./config";
+import { API_URL, RES_PER_PAGE } from "./config";
 
 //importing the helpers.js
 import { getJSON } from "./helpers";
@@ -16,6 +16,8 @@ export const state = {
   search: {
     query: "",
     results: [],
+    page: 1,
+    resultsPerPage: RES_PER_PAGE,
   },
 };
 
@@ -61,7 +63,6 @@ export const loadSearchResults = async function (query) {
     state.search.query = query;
     const data = await getJSON(`${API_URL}?search=${query}`);
     console.log(data);
-    
     //Storing the search results into the state.search.results array using map method
     state.search.results = data.data.recipes.map((rec) => {
       return {
@@ -71,11 +72,21 @@ export const loadSearchResults = async function (query) {
         image: rec.image_url,
       };
     });
-
-
   } catch (error) {
     alert(error.message);
     throw error;
   }
 };
 
+//Function to getting only 10 results per page
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  //Updating the value of page 
+  state.search.page = page;
+
+  const start = (page - 1) * state.search.resultsPerPage; //0
+  const end = page * state.search.resultsPerPage; //9
+
+  //slice doesn't include last index
+  return state.search.results.slice(start, end);
+};
