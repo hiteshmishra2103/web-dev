@@ -57,6 +57,7 @@ const controlRecipes = async function () {
     //2) Rendering the loaded recipe and setting the values of respective fields using the recipe object
 
     recipeView.render(model.state.recipe);
+
   } catch (error) {
     // alert(error.message);
     //We will not pass the error message here when the recipe with specified id is not found, because
@@ -109,9 +110,22 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
+//function for updating recipe servings, it will be executed when user clicks on increasing or decreasing
+//the servings("+" or "-")
+
+const controlServings = function (newServings) {
+  //1) Updating the recipe servings (in state)
+  model.updateServings(newServings);
+
+  //2) Updating the recipeview
+  recipeView.render(model.state.recipe);
+};
+
+
 //Implementing the publisher-subscriber pattern
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };

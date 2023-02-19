@@ -81,7 +81,7 @@ export const loadSearchResults = async function (query) {
 //Function to getting only 10 results per page
 
 export const getSearchResultsPage = function (page = state.search.page) {
-  //Updating the value of page 
+  //Updating the value of page
   state.search.page = page;
 
   const start = (page - 1) * state.search.resultsPerPage; //0
@@ -89,4 +89,13 @@ export const getSearchResultsPage = function (page = state.search.page) {
 
   //slice doesn't include last index
   return state.search.results.slice(start, end);
+};
+
+export const updateServings = function (newServings) {
+  state.recipe.ingredients.forEach((ing) => {
+    ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
+    //newQuantity = oldQuantity*newServings / oldServings // => 2 * 8 / 4 = 4
+  });
+  //updating the servings to newServings
+  state.recipe.servings = newServings;
 };

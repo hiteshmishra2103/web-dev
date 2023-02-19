@@ -34,6 +34,24 @@ class RecipeView extends View {
     );
   }
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener("click", function (event) {
+      const btn = event.target.closest(".btn--update-servings");
+      //If the btn is not clicked then go out of the function
+      if (!btn) {
+        return;
+      }
+      // console.log(this._data.servings)
+      // console.log(btn);
+      const updateTo = +btn.dataset.updateTo;
+
+      //the servings will only update when the servings are greater than 1👇
+      if (updateTo > 0) {
+        handler(updateTo);
+      }
+    });
+  }
+
   //We are using protected method below, but it will be taken care of by babel
   _generateMarkup() {
     return `
@@ -62,13 +80,18 @@ class RecipeView extends View {
           this._data.servings
         }</span>
         <span class="recipe__info-text">servings</span>
+
         <div class="recipe__info-buttons">
-          <button class="btn--tiny btn--increase-servings">
+          <button class="btn--tiny btn--update-servings" data-update-to="${
+            this._data.servings - 1
+          }">
             <svg>
               <use href="${icons}#icon-minus-circle"></use>
             </svg>
           </button>
-          <button class="btn--tiny btn--increase-servings">
+          <button class="btn--tiny btn--update-servings" data-update-to="${
+            this._data.servings + 1
+          }">
             <svg>
               <use href="${icons}#icon-plus-circle"></use>
             </svg>
