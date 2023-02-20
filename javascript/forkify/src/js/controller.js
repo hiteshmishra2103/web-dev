@@ -18,6 +18,9 @@ import searchView from "./views/searchView.js";
 //importing the ResultsView file
 import resultsView from "./views/resultsView.js";
 
+//importing the bookmarksView file
+import bookmarksView from "./views/bookmarksView.js";
+
 //Importing paginationView file
 import paginationView from "./views/paginationView.js";
 
@@ -46,10 +49,14 @@ const controlRecipes = async function () {
     //Checking if id is empty (guard clause)
     if (!id) return;
 
-    console.log(id);
+    // console.log(id);
 
     //Before loading the recipe the spinner should be rendered
     recipeView.renderSpinner();
+
+    //0) Update results view to mark selected
+    resultsView.update(model.getSearchResultsPage());
+    bookmarksView.update(model.state.bookmarks);
 
     //1) Loading the recipe
     await model.loadRecipe(id); //It will give us access to the state.recipe object
@@ -57,7 +64,6 @@ const controlRecipes = async function () {
     //2) Rendering the loaded recipe and setting the values of respective fields using the recipe object
 
     recipeView.render(model.state.recipe);
-
   } catch (error) {
     // alert(error.message);
     //We will not pass the error message here when the recipe with specified id is not found, because
@@ -118,14 +124,39 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   //2) Updating the recipeview
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
+//AddBookmark function
+const controlAddBookmark = function () {
+  //1) Add/remove books
+
+  //bookmarking can only be done if the recipe is not bookmarked before
+
+  if (!model.state.recipe.bookmarked) {
+    model.addBookmark(model.state.recipe);
+  } else {
+    model.deleteBookmark(model.state.recipe.id);
+  }
+
+  console.log(model.state.recipe);
+
+  //updating the bookmarked button if recipe is bookmarked
+  //the condition of checking if the recipe is bookmarked or not, we have put it into the recipeView.js
+  //in _generateMarkup function
+  //2) Update recipe view
+  recipeView.update(model.state.recipe);
+
+  //3) Render bookmarks
+  bookmarksView.render(model.state.bookmarks);
+};
 
 //Implementing the publisher-subscriber pattern
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };

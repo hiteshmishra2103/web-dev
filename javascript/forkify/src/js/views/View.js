@@ -11,21 +11,77 @@ export default class View {
   //data field will store the data of recipes fetched
   _data;
 
-  render(data) {
+  render(data, render = true) {
     //It will throw the error when the data is not fetched or if the data is fetched but the data array
     //is empty, because in case of inappropriate search query the data is also fetched but the array is
     //empty
     if (!data || (Array.isArray(data) && data.length === 0)) {
       return this.renderError();
     }
+
+    //we have to set the data property, that's why we didn't directly generated markup
     this._data = data;
     const markup = this._generateMarkup();
+
+    if (!render) {
+      return markup;
+    }
 
     //Clearing the content from recipe container
     this._clear();
 
     //Inserting the html markup on our html file
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  //DOM UPDATION Algorithm
+
+  update(data) {
+    this._data = data;
+
+    const newMarkup = this._generateMarkup();
+
+    //below code will convert the newMarkup string into real DOM NODE List object 👇
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+
+    const newElements = newDOM.querySelectorAll("*");
+
+    const curElements = this._parentElement.querySelectorAll("*");
+
+    //comparing the curElements and updating the values of elements to new one acc to the
+    //updated servings⭐⭐
+
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+
+      //checking if the content in the newDOM and oldDOM is equal, we use isEqualNode() for this
+      //It checks whether the content of the both the nodes are equal or not
+
+      // console.log(curEl, newEl.isEqualNode(curEl));
+
+      //if newEl and curEl have not same content then update changed text 👇
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ""
+      ) {
+        //Updating the elements whose values are changed
+        curEl.textContent = newEl.textContent;
+      }
+
+      //Updates changed (data-) attributes
+
+      if (!newEl.isEqualNode(curEl)) {
+        Array.from(newEl.attributes).forEach((attr) =>
+          //replacing the attributes in the curEl by the attributes coming from the newEl
+          curEl.setAttribute(attr.name, attr.value)
+        );
+        // console.log(newEl.attributes);
+      }
+    });
+
+    // console.log(curElements);
+
+    // console.log(newElements);
   }
 
   //Protected method for clearing the content from recipe container before another content come
