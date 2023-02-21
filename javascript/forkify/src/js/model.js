@@ -1,4 +1,5 @@
-import { async } from "regenerator-runtime";
+// import { join } from "core-js/core/array";
+// import { async } from "regenerator-runtime";
 
 //importing the config.js
 import { API_URL, RES_PER_PAGE } from "./config";
@@ -115,6 +116,10 @@ export const updateServings = function (newServings) {
   state.recipe.servings = newServings;
 };
 
+const persistBookmarks = function () {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+
 export const addBookmark = function (recipe) {
   //Add bookmarks
   state.bookmarks.push(recipe);
@@ -125,6 +130,9 @@ export const addBookmark = function (recipe) {
   if (recipe.id === state.recipe.id) {
     state.recipe.bookmarked = true;
   }
+
+  //storing the bookmarks in localstorage
+  persistBookmarks();
 };
 
 //Unbookmarking the recipe using the following function
@@ -136,7 +144,28 @@ export const deleteBookmark = function (id) {
   state.bookmarks.splice(index, 1);
 
   //Mark current recipe as NOT bookmarked
-  if (id === state.recipe.id) { 
+  if (id === state.recipe.id) {
     state.recipe.bookmarked = false;
   }
+
+  persistBookmarks();
 };
+
+const init = function () {
+  //Getting the bookmarks from the localstorage
+  const storage = localStorage.getItem("bookmarks");
+
+  //If the bookmarks are present only then we will parse
+  if (storage) {
+    state.bookmarks = JSON.parse(storage);
+  }
+};
+
+init();
+
+//function to clear all the bookmarks(only for development purpose)
+const clearBookmarks = function () {
+  localStorage.clear("bookmarks");
+};
+
+// clearBookmarks();

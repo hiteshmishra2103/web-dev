@@ -17,7 +17,7 @@ export default class View {
     //empty
     if (!data || (Array.isArray(data) && data.length === 0)) {
       return this.renderError();
-    }
+    } 
 
     //we have to set the data property, that's why we didn't directly generated markup
     this._data = data;

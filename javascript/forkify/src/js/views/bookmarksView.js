@@ -19,10 +19,16 @@ class BookmarksView extends View {
   //Generating the markup from the data fetched from the api for the search query with the help
   //of following function👇
 
+  addHanlderRender(handler) {
+    window.addEventListener("load", function () {
+      handler();
+    });
+  }
+
   _generateMarkup() {
     // console.log(this._data);
     //We don't want to render the view on the screen instead we want to simply return the markup as
-    //a string, to achieve this , we set the second argument as false 
+    //a string, to achieve this , we set the second argument as false
     return this._data
       .map((bookmark) => previewView.render(bookmark, false))
       .join("");

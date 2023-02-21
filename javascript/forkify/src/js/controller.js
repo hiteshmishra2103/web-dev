@@ -56,14 +56,18 @@ const controlRecipes = async function () {
 
     //0) Update results view to mark selected
     resultsView.update(model.getSearchResultsPage());
-    bookmarksView.update(model.state.bookmarks);
 
-    //1) Loading the recipe
+    //1) updating the bookmarks view
+
+    bookmarksView.update(model.state.bookmarks);
+    
+    //2) Loading the recipe
     await model.loadRecipe(id); //It will give us access to the state.recipe object
 
-    //2) Rendering the loaded recipe and setting the values of respective fields using the recipe object
+    //3) Rendering the loaded recipe and setting the values of respective fields using the recipe object
 
     recipeView.render(model.state.recipe);
+
   } catch (error) {
     // alert(error.message);
     //We will not pass the error message here when the recipe with specified id is not found, because
@@ -71,6 +75,7 @@ const controlRecipes = async function () {
     //message which will
 
     recipeView.renderError();
+    console.error(error);
   }
 };
 
@@ -152,8 +157,14 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+//function for rendering the bookmarks
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
 //Implementing the publisher-subscriber pattern
 const init = function () {
+  bookmarksView.addHanlderRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
