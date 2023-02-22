@@ -8,6 +8,9 @@ import { async } from "regenerator-runtime";
 //Importing model
 import * as model from "./model.js";
 
+//importing modal_close_sec form config.js
+import { MODAL_CLOSE_SEC } from "./config.js";
+
 //Importing recipe view from recipeview.js👇
 //This file will help us to render recipes
 import recipeView from "./views/recipeView.js";
@@ -23,6 +26,8 @@ import bookmarksView from "./views/bookmarksView.js";
 
 //Importing paginationView file
 import paginationView from "./views/paginationView.js";
+
+import addRecipeView from "./views/addRecipeView.js";
 
 // //Activating the hot module reloading
 // //It will automatically update modules in the browser
@@ -60,14 +65,13 @@ const controlRecipes = async function () {
     //1) updating the bookmarks view
 
     bookmarksView.update(model.state.bookmarks);
-    
+
     //2) Loading the recipe
     await model.loadRecipe(id); //It will give us access to the state.recipe object
 
     //3) Rendering the loaded recipe and setting the values of respective fields using the recipe object
 
     recipeView.render(model.state.recipe);
-
   } catch (error) {
     // alert(error.message);
     //We will not pass the error message here when the recipe with specified id is not found, because
@@ -162,6 +166,35 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    //upload the new recipe data
+    await model.uploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+
+    //Render recipe
+    recipeView.render(model.state.recipe);
+
+    //Success Message
+    addRecipeView.renderMessage();
+
+    //Render bookmarks view
+    bookmarksView.render(model.state.bookmarks);
+
+    //Change id in url using history api
+    //pushState will allow us to change the url without reloading the page
+    window.history.pushState(null, "", `#${model.state.recipe.id}`);
+
+    //close form
+    setTimeout(function () {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_SEC * 1000);
+  } catch (error) {
+    console.error("😔" + error.message);
+    addRecipeView.renderError(error.message);
+  }
+};
+
 //Implementing the publisher-subscriber pattern
 const init = function () {
   bookmarksView.addHanlderRender(controlBookmarks);
@@ -170,6 +203,7 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 
 //Calling the init() to call the addHandlerRender function
