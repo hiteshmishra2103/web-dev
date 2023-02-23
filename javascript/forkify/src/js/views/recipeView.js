@@ -12,7 +12,7 @@ import icons from "url:../../img/icons.svg"; //parcel v2
 import Fraction from "fractional";
 import { mark } from "regenerator-runtime";
 
-console.log(Fraction);
+// console.log(Fraction);
 
 class RecipeView extends View {
   //recipe container element👇

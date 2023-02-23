@@ -11,13 +11,22 @@ export default class View {
   //data field will store the data of recipes fetched
   _data;
 
+  /**
+   * Render the received object to the DOM
+   * @param {Object | Object[]} data The data to be rendered (e.g. recipe)
+   * @param {boolean} [render=true] if false, create markup string instead of rendering to the DOM
+   * @returns {undefined | string} A markup string is returned if render=false
+   * @this {Object} View object instance
+   * @author Hitesh Mishra
+   */
+
   render(data, render = true) {
     //It will throw the error when the data is not fetched or if the data is fetched but the data array
     //is empty, because in case of inappropriate search query the data is also fetched but the array is
     //empty
     if (!data || (Array.isArray(data) && data.length === 0)) {
       return this.renderError();
-    } 
+    }
 
     //we have to set the data property, that's why we didn't directly generated markup
     this._data = data;
@@ -35,6 +44,13 @@ export default class View {
   }
 
   //DOM UPDATION Algorithm
+
+  /**
+   * Update the markup if the the markup changes to avoid reloading and downloading
+   * resources required for new data
+   * @param {Object} data The data which is changed will be updated on the page
+   * @returns {undefined}
+   */
 
   update(data) {
     this._data = data;
@@ -84,7 +100,12 @@ export default class View {
     // console.log(newElements);
   }
 
-  //Protected method for clearing the content from recipe container before another content come
+  /**
+   * Protected method for clearing the content from recipe container before another content come
+   * @param {undefined}
+   * @returns {undefined}
+   */
+
   _clear() {
     this._parentElement.innerHTML = "";
   }
@@ -103,6 +124,11 @@ export default class View {
 
   //If we don't pass any argument to the following function then it will have a default recipe not found
   //error message
+
+  /**
+   *
+   * @param {string} [message='error message'] 
+   */
   renderError(message = this._errorMessage) {
     const markup = `<div class="error">
   <div>
