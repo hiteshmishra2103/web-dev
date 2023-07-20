@@ -29,9 +29,77 @@
   Testing the server - run `npm run test-authenticationServer` command in terminal
  */
 
-const express = require("express")
+const express = require("express");
 const PORT = 3000;
 const app = express();
 // write your logic here, DONT WRITE app.listen(3000) when you're running tests, the tests will automatically start the server
+const users = [];
+app.post("/signup", (req, res) => {
+  const { username, password, firstName, lastName } = req.body;
+  // Check whether there exist such user before creating new one
+  let userExists = users.find((user) => user.username === username);
+  if (userExists) {
+    return res.status(400).send("User already exists!");
+  } else {
+    const userId = Math.floor(Math.random() * Date.now());
+    const userData = { ...req.body };
+    userData["id"] = userId;
+    //we will pass the shallow copy of the userData object to the array so
+    //that any changes made to the userData object won't reflect in the users
+    //array
+    users.push({ ...userData });
+  }
+});
+
+app.post("/login", (req, res) => {
+  var user = req.body;
+  let userFound = null;
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].email === user.email && users[i].password === user.password) {
+      userFound = users[i];
+      break;
+    }
+  }
+
+  if (userFound) {
+    res.json({
+      firstName: userFound.firstName,
+      lastName: userFound.lastName,
+      email: userFound.email,
+    });
+  } else {
+    res.sendStatus(401);
+  }
+});
+
+app.get("/data", (req, res) => {
+  var email = req.headers.email;
+  var password = req.headers.password;
+  let userFound = false;
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].email === email && users[i].password === password) {
+      userFound = true;
+      break;
+    }
+  }
+
+  if (userFound) {
+    let usersToReturn = [];
+    for (let i = 0; i < users.length; i++) {
+      usersToReturn.push({
+        firstName: users[i].firstName,
+        lastName: users[i].lastName,
+        email: users[i].email,
+      });
+    }
+    res.json({
+      usersToReturn,
+    });
+  } else {
+    res.sendStatus(401);
+  }
+});
+
+app.listen(3000, () => console.log("Server listening on port 3000."));
 
 module.exports = app;
