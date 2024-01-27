@@ -9,7 +9,7 @@ View all the details about the project here: 👉 https://www.linkedin.com/feed/
 2) A full stack blog: Link 👉 https://blog-iiwu.onrender.com/
 View all the details about the project here: 👉 https://www.linkedin.com/feed/update/urn:li:activity:7003218909071831040/
 
-3) Forkify project (for searching recipe): Link 👉 https://forkifyonline.netlify.app/
+3) Forkify project (for searching recipe): Link 👉 https://liquidoven.netlify.app/
 View all the details about the project here: 👉 https://www.linkedin.com/feed/update/urn:li:activity:7034472364465696768/
 
 4) Mapty project (for marking the location of workouts) : Link 👉  https://maptymapout.netlify.app/
